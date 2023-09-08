@@ -1,0 +1,33 @@
+
+// Load fonts outside of imports, because we load imports in all Vue components
+
+@font-face {
+    font-family: "Nunito";
+    src: local("Nunito"),
+     url(../../assets/Nunito/static/Nunito-Regular.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Nunito-bold";
+    src: local("Nunito"),
+     url(../../assets/Nunito/static/Nunito-Bold.ttf) format("truetype");
+}
+
+html {
+    font-family: "Nunito";
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    background: #FCDE9C;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    // display: none;
+}
+canvas{
+    height: calc(94vh - 116px) !important;
+    top: 66px !important;
+    opacity: 0.5 !important;
+    position: absolute !important;
+}

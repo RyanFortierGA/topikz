@@ -1,0 +1,53 @@
+<template>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
+</template>
+
+<script setup>
+  import useUser from "~/composables/useUser"
+
+  const user = useUser()
+  const router = useRouter()
+  const route = useRoute()
+
+  const loginRoutes = ['/login', '/signup']
+  const checkPath = () => {
+    if(process.client) {
+      //setting local
+      if(user.value){
+        console.log(user.value.email)
+        localStorage.setItem("localUser", user.value.email)
+      }
+      //page checks
+      console.log(localStorage.active)
+      if (localStorage.localUser && localStorage.active !== 'false') {
+          // continue on 
+      } else {
+        if(localStorage.localUser){
+          router.push('/account')
+        }else{
+          if(!loginRoutes.includes())
+          router.push('/')
+        }
+      }
+    }
+
+  }
+
+  const curPath = computed(() => {
+      return route.path
+  })
+  checkPath()
+  watch(() => curPath, (newPath) => {
+    if (newPath) {
+      setTimeout(() => {
+        checkPath()
+      }, 500);
+    }
+  }, { deep: true })
+
+</script>
+<style lang="scss">
+
+</style>
