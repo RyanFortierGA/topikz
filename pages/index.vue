@@ -3,7 +3,7 @@
     <h1>Lets Talk...</h1>
     <DefaultCard v-if="currentCard.type && ['convo'].includes(currentCard.type)" :info="currentCard"/>
     <DraftCard v-if="currentCard.type && ['draft'].includes(currentCard.type)" :info="currentCard"/>
-    <ThreeBackground v-if="currentCard.type"/>
+    <ThreeBackground v-if="currentCard.type" @rollNew="getTopic()"/>
     <svg class="loader" v-else version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
         <rect x="20" y="50" width="4" height="10" fill="#fff">
@@ -101,10 +101,11 @@ export default {
 </script> 
 <style lang="scss" scoped>
 .home{
-    height: calc(100vh - 93px);
+    height: calc(94vh - 93px);
     z-index:  999;
     h1{
       margin-top: 0px;
+      margin-bottom: 0px;
       position: relative;
       z-index: 999;
       text-align: center;
@@ -124,7 +125,8 @@ export default {
       gap: 8px;
       transition: 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
       cursor: pointer;
-      top: 68%;
+      top:20%;
+      z-index: 999;
       &:hover{
         background: #280000;
         color: #fff;
@@ -132,8 +134,13 @@ export default {
       }
     }
     .leaderboardSelector{
-      right: -56px;
-      top: 88%;
+      width: fit-content;
+      left: -56px;
+      top: 20%;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
     }
     .loader{
       margin: auto;

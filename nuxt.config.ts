@@ -59,6 +59,12 @@ export default defineNuxtConfig({
   build: {
     transpile: ['primevue']
   },
+   server: {     
+    port: 8000, // default: 3000     
+    host: '0.0.0.0', // default: localhost   
+  },  
+  target: 'static',
+  
   plugins: [{ src: "@/plugins/aos", ssr: false, mode: "client" }],
   modules: ['nuxt-icon', '@tresjs/nuxt', '@nuxtjs/sanity'],
   //'@nuxtjs/google-adsense'

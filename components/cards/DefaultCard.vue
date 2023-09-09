@@ -2,8 +2,10 @@
     <div class="defaultCard" data-aos="fade-down" data-aos-delay="300">
       <span>Topic Type: {{info.label}}</span>
       <h2>{{info.heading}}</h2>
-      <h4>How it Works:</h4>
-      <p>{{info.description}}</p>
+      <div class="bottom">
+        <h4>How it Works:</h4>
+        <p>{{info.description}}</p>
+      </div>
     </div>
 </template>
 
@@ -28,6 +30,7 @@ export default {
       border-radius: 16px;
       z-index: 999;
       padding: 24px;
+      /* min-height: 320px; */
         span{
             opacity: 0.6;
             text-align: center;
@@ -52,6 +55,11 @@ export default {
         p{
             margin: 0px;
             opacity: 0.6;
+        }
+        .bottom{
+            /* position: absolute;
+            bottom: 24px;
+            width: calc(100% - 48px); */
         }
     }
 </style>

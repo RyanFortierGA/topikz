@@ -5,6 +5,7 @@
 </template>
 
 <script>
+//  this.$emit('onNextVote')
   export default {
     props: {
       open: {

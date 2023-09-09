@@ -8,7 +8,7 @@
       </TresMesh>
     </TresScene>
   </TresCanvas>
-  <span>New Topic</span>
+  <span @click="rollNew">New Topic</span>
 </div>
 </template>
 
@@ -21,14 +21,29 @@ import { useRenderLoop, TresInstance } from '@tresjs/core';
 const boxRef: ShallowRef<TresInstance | null> = shallowRef(null);
 
 const { onLoop } = useRenderLoop();
+const emit = defineEmits(['rollNew'])
 
 onLoop(({ delta, elapsed }) => {
   if (boxRef.value) {
     boxRef.value.rotation.y += delta;
     boxRef.value.rotation.z = elapsed * 0.8;
-    boxRef.value.position.y = -2;
+
+    let isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+      navigator.userAgent &&
+      navigator.userAgent.indexOf('CriOS') == -1 &&
+      navigator.userAgent.indexOf('FxiOS') == -1;
+    if(isSafari){
+      boxRef.value.position.y = -4;
+      boxRef.value.position.z = -1.5;
+    }else{
+      boxRef.value.position.y = -3.6;
+      boxRef.value.position.z = -1.5;
+    }
   }
 });
+const rollNew = () =>{
+  emit('rollNew')
+}
 </script>
 <style lang="scss" scoped>
 .dice{
@@ -39,7 +54,7 @@ onLoop(({ delta, elapsed }) => {
     border-radius: 16px;
     padding: 24px;
     margin: auto;
-    bottom: 30px;
+    bottom: 40px;
     cursor: pointer;
     transition: 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
     position: absolute;
@@ -51,6 +66,7 @@ onLoop(({ delta, elapsed }) => {
     animation:slidebg 5s linear infinite;
     color: #fff;
     font-family: Nunito-bold;
+    left: 36px;
   }
   @keyframes slidebg {
     to {
