@@ -27,7 +27,7 @@
         if(localStorage.localUser){
           router.push('/account')
         }else{
-          if(!loginRoutes.includes())
+          if(!loginRoutes.includes(route.path))
           router.push('/')
         }
       }
