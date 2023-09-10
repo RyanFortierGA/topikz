@@ -26,9 +26,18 @@ body{
     // display: none;
 }
 canvas{
-    height: calc(94vh - 116px) !important;
-    top: 66px !important;
+    height: 100px !important;
+    // top: 300px !important;
     opacity: 0.5 !important;
-    position: absolute !important;
+    position: relative !important;
     pointer-events: none !important;
 }
+
+@media not all and (min-resolution:.001dpcm)
+{ @supports (-webkit-appearance:none) {
+
+    canvas { 
+        height: 200px !important;
+
+    }
+}}

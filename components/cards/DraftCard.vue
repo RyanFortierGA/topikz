@@ -1,27 +1,35 @@
 <template>
     <div class="draftCard" data-aos="fade-down" data-aos-delay="300">
-      <span>Topic Type: {{info.label}}</span>
-      <h2>{{info.heading}}</h2>
-      <h4 v-if="!draftStarted">How it Works:</h4>
-      <p v-if="!draftStarted">{{info.description}}</p>
-      <div class="gameArea" v-else>
-            <div class="left">
-                <input type="text" placeholder="Team 1 Round #1"/>
-                <input type="text" placeholder="Team 1 Round #2"/>
-                <input type="text" placeholder="Team 1 Round #3"/>
-                <input type="text" placeholder="Team 1 Round #4"/>
-                <input type="text" placeholder="Team 1 Round #5"/>
+        <div class="actions">
+            <div class="leaderboard">
+                Leaderboard
             </div>
-            <div class="right">
-                <input type="text" placeholder="Team 2 Round #1"/>
-                <input type="text" placeholder="Team 2 Round #2"/>
-                <input type="text" placeholder="Team 2 Round #3"/>
-                <input type="text" placeholder="Team 2 Round #4"/>
-                <input type="text" placeholder="Team 2 Round #5"/>
+            <div class="filters">
+                Topik Types
             </div>
-      </div>
-      <span class="selector" @click="draftStarted = !draftStarted"> {{draftStarted? 'View Instructions' : 'Get Drafting'}}</span>
-    </div>
+        </div>
+        <span>Topic Type: {{info.label}}</span>
+        <h2>{{info.heading}}</h2>
+        <h4 v-if="!draftStarted">How it Works:</h4>
+        <p v-if="!draftStarted">{{info.description}}</p>
+        <div class="gameArea" v-else>
+                <div class="left">
+                    <input type="text" placeholder="Team 1 Round #1"/>
+                    <input type="text" placeholder="Team 1 Round #2"/>
+                    <input type="text" placeholder="Team 1 Round #3"/>
+                    <input type="text" placeholder="Team 1 Round #4"/>
+                    <input type="text" placeholder="Team 1 Round #5"/>
+                </div>
+                <div class="right">
+                    <input type="text" placeholder="Team 2 Round #1"/>
+                    <input type="text" placeholder="Team 2 Round #2"/>
+                    <input type="text" placeholder="Team 2 Round #3"/>
+                    <input type="text" placeholder="Team 2 Round #4"/>
+                    <input type="text" placeholder="Team 2 Round #5"/>
+                </div>
+        </div>
+        <span class="selector" @click="draftStarted = !draftStarted"> {{draftStarted? 'View Instructions' : 'Get Drafting'}}</span>
+        </div>
 </template>
 
 <script>
@@ -50,6 +58,8 @@ export default {
       border-radius: 16px;
       z-index: 999;
       padding: 16px;
+      margin-top: 36px;
+      border-top-right-radius: 0px;
         span{
             opacity: 0.6;
             text-align: center;
@@ -100,6 +110,30 @@ export default {
                 padding: 4px 8px;
                 max-width: 38vw;
             }
+        }
+        .actions{
+            position: absolute;
+            top: -26px;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            justify-content: flex-end;
+            right: 0px;
+            gap: 8px;
+            z-index: 999;
+        }
+        .leaderboard, .filters{
+            /* border: 1px solid #525554; */
+            border-bottom: none;
+            width: fit-content;
+            background: #59C9A5;
+            left: -16px;
+            padding: 4px;
+            padding-bottom: 0px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.06);
+
         }
     }
 </style>
