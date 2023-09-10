@@ -21,14 +21,29 @@
       }
       //page checks
       console.log(localStorage.active)
-      if (localStorage.localUser && localStorage.active !== 'false' || route.path === 'accountManagement') {
-          // continue on 
-      } else {
-        if(localStorage.localUser){
-          router.push('/account')
+      // if (localStorage.localUser && localStorage.active !== 'false' || route.path === 'accountManagement') {
+      //     // continue on 
+      // } else {
+        // if(localStorage.localUser){
+        //   router.push('/account')
+        // }else{
+        //   if(!loginRoutes.includes(route.path))
+        //   router.push('/')
+        // }
+      // }
+      if(route.path === 'member'){
+        if(localStorage.localUser && localStorage.active !== 'false'){
         }else{
-          if(!loginRoutes.includes(route.path))
-          router.push('/')
+            if(localStorage.localUser){
+              router.push('/account')
+          } else  {
+            router.push('/')
+          }
+        }
+      } else if(route.path === 'account'){
+        if(localStorage.localUser){
+        } else {
+          router.push('/login')
         }
       }
     }
