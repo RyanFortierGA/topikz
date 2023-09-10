@@ -21,7 +21,7 @@
       }
       //page checks
       console.log(localStorage.active)
-      if (localStorage.localUser && localStorage.active !== 'false') {
+      if (localStorage.localUser && localStorage.active !== 'false' || route.path === 'accountManagement') {
           // continue on 
       } else {
         if(localStorage.localUser){
