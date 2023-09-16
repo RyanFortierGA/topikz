@@ -2,7 +2,7 @@
   <div class="amPage">
     <img src="~/assets/images/accountManagement_img.png"/>
     <div class="formWrapper">
-      <a href="/member"><Icon name="ic:twotone-arrow-back" />Back to the fun</a>
+      <NuxtLink to="/member"><Icon name="ic:twotone-arrow-back" />Back to the fun</NuxtLink>
       <h1>Account Management</h1>
       <span>Contact Us: <a href="mailto:contact@dinnertopic.com">contact@dinnertopic.com</a></span>
       <div class="buttons">

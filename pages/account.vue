@@ -41,13 +41,15 @@
 <script>
 import Stripe from 'stripe';
 import useUser from "~/composables/useUser"
+import constructFB from '../server/lib/config.js'
 
 export default {
   data() {
     return {
       emailToCheck: '',
       emailExists: null,
-      user: useUser()
+      user: useUser(),
+      firebaseData: null
     };
   },
   async mounted() {
@@ -62,31 +64,62 @@ export default {
       // Create a customer with an email address
       stripe.customers.create({
         email: localStorage.getItem('localUser'),
-      }, function(err, customer) {
+      }, async function(err, customer) {
         if (err) {
           console.error('Error creating customer:', err);
         } else {
-          console.log('Customer created:', customer);
           localStorage.setItem("stripeId", customer.id)
+        
+          _this.writeToFirestore(customer.id)
           _this.emailExists = false
         }
       });
     //case 2 if not new user
     }else{
       const _this = this
-      //case 2 sub 1 if they login and they already have a stripe id, check if their subscription is currently active
+      //case 2 main check for local storage stripe id
       if(localStorage.getItem('stripeId')){
         _this.emailExists = await _this.hasActiveSubscriptions(localStorage.getItem('stripeId'));
-      }else{
-        const _this = this
-        //case 2 sub 2 if they login and they dont have a stripe id check if they have an email in the customer database, and if so then check if they have active subscription cause the stripe id will now exist
-        const emailToCheck = localStorage.getItem('localUser')
-        if (emailToCheck) {
-          _this.emailToCheck = emailToCheck;
-          if(await _this.checkCustomerEmailExists(emailToCheck)){
-            _this.emailExists = await _this.hasActiveSubscriptions(localStorage.getItem('stripeId'));
+      }//end of main and start of main else
+      else{ 
+        //case 2 sub 1 if they login and they already have a stripe id in firebase, check if their subscription is currently active
+        //firebase check
+          const firebase2  = constructFB(this.$config)
+          const query = firebase2.store.collection("users").where("fId", "==", this.user.uid);
+          const _this = this
+          query.get().then((querySnapshot) => {
+          // querySnapshot contains the results of the query
+          if (!querySnapshot.empty) {
+            // There are documents that match the query
+            querySnapshot.forEach((doc) => {
+              // Access the data of each matching document
+              const data = doc.data();
+              _this.firebaseData = data
+            });
+          } else {
+            // No documents match the query
+            console.log("No documents match the query.");
           }
-        }
+        }).catch((error) => {
+          console.error("Error querying Firestore:", error);
+        });
+
+        setTimeout( async() => {
+          if(this.firebaseData.stripeId){
+            _this.emailExists = await _this.hasActiveSubscriptions(this.firebaseData.stripeId);
+          }else{
+            const _this = this
+            //case 2 sub 2 if they login and they dont have a stripe id check if they have an email in the customer database, and if so then check if they have active subscription cause the stripe id will now exist
+            const emailToCheck = localStorage.getItem('localUser')
+            if (emailToCheck) {
+              _this.emailToCheck = emailToCheck;
+              if(await _this.checkCustomerEmailExists(emailToCheck)){
+                _this.emailExists = await _this.hasActiveSubscriptions(localStorage.getItem('stripeId'));
+              }
+            }
+          }//end of sub 2
+        }, 500);
+
       }
     }
 
@@ -97,7 +130,6 @@ export default {
     
     // Append the script to the document's head
     document.head.appendChild(script);
-    
   },
   methods: {
     async checkCustomerEmailExists(email) {
@@ -116,7 +148,6 @@ export default {
           if (startingAfter) {
             options.starting_after = startingAfter;
           }
-
           // List customers with pagination
           const result = await stripe.customers.list(options);
 
@@ -129,11 +160,32 @@ export default {
         }
 
         // Check if the email exists in the list of customers
-        const customerWithEmail = customers.find(customer => customer.email === email);
+        let customerWithEmail = customers.find(customer => customer.email === email);
         if(customerWithEmail){
           localStorage.setItem("stripeId", customerWithEmail.id)
+        }//if it doesnt create one 
+        else {
+          const _this = this
+          //new account
+          const stripeKeySecret = this.$config.public.stripeKeySecret;
+          const stripe = new Stripe(stripeKeySecret, {
+            apiVersion: '2020-08-27',
+          });
+          // Create a customer with an email address
+          stripe.customers.create({
+            email: localStorage.getItem('localUser'),
+          }, async function(err, customer) {
+            if (err) {
+              console.error('Error creating customer:', err);
+            } else {
+              localStorage.setItem("stripeId", customer.id)
+              _this.writeToFirestore(customer.id)
+              _this.emailExists = false
+            }
+          });
+          customerWithEmail = customer
         }
-
+        //either way should return with a customer new or not
         return !!customerWithEmail;
       } catch (error) {
         console.error('Error checking customer email:', error);
@@ -172,7 +224,7 @@ export default {
           console.error('No customer ID found in localStorage.');
           return;
         }
-              const stripeKeySecret = this.$config.public.stripeKeySecret;
+        const stripeKeySecret = this.$config.public.stripeKeySecret;
 
         const stripe = new Stripe(stripeKeySecret, {
           apiVersion: '2020-08-27',
@@ -203,8 +255,14 @@ export default {
       }
       localStorage.removeItem('localUser')
       this.$router.push('/')
+    },
+    async writeToFirestore(id){
+      const firebase  = constructFB(this.$config)
+        const ref = await firebase.store.collection('users').doc(this.user.uid).set({
+          stripeId: id,
+          fId: this.user.uid
+        });
     }
- 
   },
   watch: {
     emailExists(value) {

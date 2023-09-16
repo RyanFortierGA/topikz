@@ -12,7 +12,6 @@ const {
   FIREBASE_ADMIN_STORAGE_BUCKET,
   GOOGLE_APPLICATION_CREDENTIALS
 } = process.env
-
 if (!getApps().length) {
   if (GOOGLE_APPLICATION_CREDENTIALS) {
     firebaseAdminApp = initializeApp({

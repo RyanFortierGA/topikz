@@ -11,7 +11,7 @@
   const router = useRouter()
   const route = useRoute()
 
-  const loginRoutes = ['/login', '/signup']
+  const loginRoutes = ['/login', '/signup', 'accountManagement', '/']
   const checkPath = () => {
     if(process.client) {
       //setting local
@@ -21,29 +21,14 @@
       }
       //page checks
       console.log(localStorage.active)
-      // if (localStorage.localUser && localStorage.active !== 'false' || route.path === 'accountManagement') {
-      //     // continue on 
-      // } else {
-        // if(localStorage.localUser){
-        //   router.push('/account')
-        // }else{
-        //   if(!loginRoutes.includes(route.path))
-        //   router.push('/')
-        // }
-      // }
-      if(route.path === 'member'){
-        if(localStorage.localUser && localStorage.active !== 'false'){
-        }else{
-            if(localStorage.localUser){
-              router.push('/account')
-          } else  {
-            router.push('/')
-          }
-        }
-      } else if(route.path === 'account'){
+      if (localStorage.localUser && localStorage.active !== 'false') {
+          // continue on 
+      } else {
         if(localStorage.localUser){
-        } else {
-          router.push('/login')
+          router.push('/account')
+        }else{
+          if(!loginRoutes.includes(route.path))
+          router.push('/')
         }
       }
     }

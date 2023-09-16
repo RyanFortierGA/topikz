@@ -3,7 +3,7 @@
     <h1>Lets Talk...</h1>
     <DefaultCard v-if="currentCard.type && ['convo'].includes(currentCard.type)" :info="currentCard"/>
     <DraftCard v-if="currentCard.type && ['draft'].includes(currentCard.type)" :info="currentCard"/>
-    <ThreeBackground v-if="currentCard.type" @rollNew="getTopic()"/>
+    <Controls v-if="currentCard.type" @rollNew="getTopic()"/>
     <svg class="loader" v-else version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
         <rect x="20" y="50" width="4" height="10" fill="#fff">
@@ -28,12 +28,10 @@
     <div class="ad">
       <!-- <adsbygoogle /> -->
     </div>
-    <span class="topicSelector">Topic Types<Icon name="jam:message-writing" /></span>
-    <span class="leaderboardSelector">Leaderboard<Icon name="tdesign:leaderboard" /></span>
   </div>
 </template>
 <script>
-import ThreeBackground from '../components/ThreeBackground.vue';
+import Controls from '../components/Controls.vue';
 import DefaultCard from '../components/cards/DefaultCard.vue';
 import DraftCard from '../components/cards/DraftCard.vue';
 
@@ -50,7 +48,7 @@ export default {
     const { data: cards } = useSanityQuery(getCards)
     return { cards }
   },
-  components:{ThreeBackground, DefaultCard, DraftCard},
+  components:{Controls, DefaultCard, DraftCard},
 
   data() {
     return{
@@ -59,15 +57,18 @@ export default {
       cardInfo: {
         convo:{
           label: 'Casual Conversation',
-          description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your group"
+          description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your group",
+          details: 'details'
         },
         draft:{
           label: 'Draft War',
-          description: "War has begun, and the only way to settle this is by assembling a team of 5 that best fits the prompt. Take turns going back and forth and adding a selection to your team, and after finishing you decide who has won the war."
+          description: "War has begun, and the only way to settle this is by assembling a team of 5 that best fits the prompt.",
+          details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.'
         },
         guessCompany:{
           label: 'Guess the Company',
-          description: "guess the company description"
+          description: "guess the company description",
+          details: 'details'
         }
       }
     }
@@ -94,7 +95,7 @@ export default {
       this.currentCard = includedCards[index]
       this.currentCard.label = this.cardInfo[this.currentCard.type].label
       this.currentCard.description = this.cardInfo[this.currentCard.type].description
-      console.log(this.currentCard)
+      this.currentCard.details = this.cardInfo[this.currentCard.type].details
     }
   }
 }
@@ -109,6 +110,7 @@ export default {
       position: relative;
       z-index: 999;
       text-align: center;
+      color: #fff;
     }
     .topicSelector, .leaderboardSelector{
       position: fixed;

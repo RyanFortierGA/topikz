@@ -57,7 +57,7 @@ export default defineNuxtConfig({
     shim: false
   },
   build: {
-    transpile: ['primevue']
+    transpile: ['primevue'],
   },
    server: {     
     port: 8000, // default: 3000     

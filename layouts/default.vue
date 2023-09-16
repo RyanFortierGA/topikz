@@ -18,6 +18,7 @@
 <style lang="scss">
   .wrapper{
     padding: 18px;
+    padding-top: 0px;
     color: #280000;
   }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <footer class="footer">
-    <a href="/accountManagement">Account Management</a>
+    <NuxtLink to="/accountManagement">Account Management</NuxtLink>
     <div class="bar"/>
     <div class="bottom">
       <span>Copyright 2023</span>
       <span>|</span>
-      <a href="/terms">Terms & Privacy</a>
+      <NuxtLink to="/terms">Terms & Privacy</NuxtLink>
     </div>
   </footer>
 </template>
