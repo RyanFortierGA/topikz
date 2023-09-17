@@ -1,7 +1,7 @@
 <template>
     <div class="draftCard card" data-aos="flip-left" data-aos-delay="300">
         <div :class="learnOpen? 'cardWrap showDetails' : 'cardWrap'">
-            <span class="topic"><Icon :name="info.icon" />{{info.label}}</span>
+            <span v-if="info.icon" class="topic"><Icon :name="info.icon" />{{info.label}}</span>
             <h2>{{info.heading}}</h2>
             <h4 v-if="!gaOpen">How it Works:</h4>
             <p v-if="!gaOpen">{{info.description}}</p>
@@ -37,6 +37,9 @@ export default {
     props:{
         info:{
             type: Object
+        },
+        reset: {
+            type: Boolean
         }
     }, 
     data() {
@@ -52,7 +55,15 @@ export default {
                 this.learnOpen = false
             }, 300);
         }
-    }
+    },
+    watch: {
+        reset(value) {
+            if(value){
+                this.gaOpen = false
+                this.learnOpen = false
+            } 
+        },
+    },
 }
 </script>
 

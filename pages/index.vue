@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <h1>Lets Talk...</h1>
-    <DefaultCard v-if="currentCard.type && ['casualConvo', 'familyConvo'].includes(currentCard.type)" :info="currentCard"/>
-    <DraftCard v-if="currentCard.type && ['draftGame'].includes(currentCard.type)" :info="currentCard"/>
+    <DefaultCard :class="currentCard && currentCard.type === 'casualConvo'? 'showCard' : 'hideCard'" :info="currentCard" :reset="reset"/>
+    <DefaultCard :class="currentCard && currentCard.type === 'familyConvo'? 'showCard' : 'hideCard'" :info="currentCard" :reset="reset"/>
+    <DraftCard :class="currentCard && currentCard.type === 'draftGame'? 'showCard' : 'hideCard'" :info="currentCard" :reset="reset"/>
     <Controls v-if="currentCard.type" @rollNew="getTopic()"/>
     <svg class="loader" v-else version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
@@ -54,6 +55,7 @@ export default {
     return{
       chosenFilters: ['casualConvo', 'draftGame', 'foundedComp', 'familyConvo',],
       currentCard: {},
+      reset: false,
       cardInfo: {
         casualConvo:{
           label: 'Casual Conversation',
@@ -110,6 +112,10 @@ export default {
         this.currentCard.details = this.cardInfo[this.currentCard.type].details
         this.currentCard.icon = this.cardInfo[this.currentCard.type].icon
         localStorage.setItem("currentType", this.currentCard.type)
+        this.reset = true
+        setTimeout(() => {
+          this.reset = false
+        }, 300);
       }
     }
   }
@@ -164,6 +170,44 @@ export default {
       position: absolute;
       width: 300px;
       height: 300px;
+    }
+    .showCard{
+      transform: translateX(0px);
+      transition: 1.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+      animation: shower;
+      animation-duration: .5s;
+      animation-fill-mode: forwards;
+    }
+    .hideCard{
+      transform: translateX(500px);
+      position: absolute;
+      top: 15%;
+      animation-name: hider;
+      animation-duration: .5s;
+      animation-fill-mode: forwards;
+    }
+    @keyframes hider {
+      0% {
+        display: block;
+        transform: translateX(0px);
+      }
+      99%{
+        display: block;
+      }
+      100% {
+        transform: translateX(380px);
+        display: none;
+      }
+    }
+     @keyframes shower {
+      0% {
+        display: block;
+        transform: translateX(380px);
+      }
+      100% {
+        transform: translateX(0px);
+        display: block;
+      }
     }
 }
 </style>
