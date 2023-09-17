@@ -6,6 +6,7 @@
       <h1>Account Management</h1>
       <span>Contact Us: <a href="mailto:contact@dinnertopic.com">contact@dinnertopic.com</a></span>
       <div class="buttons">
+         <span @click="signOut">Sign Out</span>
         <span class="cancel" @click="cancelOpen = !cancelOpen">Cancel Subscription</span>
         <span class="delete" @click="modalOpen = !modalOpen">Delete Account</span>
       </div>
@@ -34,6 +35,13 @@ export default {
     };
   },
   methods: {
+    async signOut(){
+      if (this.user) {
+        await this.$nuxt.$firebaseAuth.signOut()
+      }
+      localStorage.removeItem('localUser')
+      this.$router.push('/')
+    },
     async getCustomerSubscriptions(customerId) {
       try {
         const stripeKeySecret = this.$config.public.stripeKeySecret;
