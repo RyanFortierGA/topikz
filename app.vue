@@ -16,7 +16,6 @@
     if(process.client) {
       //setting local
       if(user.value){
-        console.log(user.value.email)
         localStorage.setItem("localUser", user.value.email)
       }
       //page checks

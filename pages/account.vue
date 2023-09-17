@@ -104,7 +104,8 @@ export default {
         });
 
         setTimeout( async() => {
-          if(this.firebaseData.stripeId){
+          if(this.firebaseData && this.firebaseData.stripeId){
+            console.log(this.firebaseData.stripeId)
             _this.emailExists = await _this.hasActiveSubscriptions(this.firebaseData.stripeId);
           }else{
             const _this = this
@@ -199,11 +200,11 @@ export default {
         const subscriptions = await stripe.subscriptions.list({
           customer: customerId,
         });
-
         // Check if any subscription is active
         const hasActiveSubscription = subscriptions.data.some(subscription => {
           return subscription.status === 'active';
         });
+        console.log(subscriptions, customerId)
         if(hasActiveSubscription){
           localStorage.setItem("active", 'true')
         }else{
@@ -251,6 +252,8 @@ export default {
         await this.$nuxt.$firebaseAuth.signOut()
       }
       localStorage.removeItem('localUser')
+      localStorage.removeItem('stripeId')
+
       this.$router.push('/')
     },
     async writeToFirestore(id){

@@ -76,7 +76,6 @@ export default {
 
   mounted(){
     if(this.cards){
-      console.log(this.cards)
       this.getTopic()
     }
   },

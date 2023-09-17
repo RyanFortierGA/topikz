@@ -40,6 +40,7 @@ export default {
         await this.$nuxt.$firebaseAuth.signOut()
       }
       localStorage.removeItem('localUser')
+      localStorage.removeItem('stripeId')
       this.$router.push('/')
     },
     async getCustomerSubscriptions(customerId) {
@@ -82,10 +83,8 @@ export default {
         });
 
         // Handle success and notify the user
-        console.log('Subscription cancellation scheduled successfully.');
         this.currentMessage = 'Your subscription will cancel at the end of your paying period, we also hope to see you back soon!'
       } catch (error) {
-        console.error('Error cancelling subscription:', error);
         // Handle errors and notify the user
         alert('Error cancelling subscription. Please try again later.');
           this.currentMessage = 'Cancelation failed, please logout and login to try again, if that still fails please reach out to contact@dinnertopic.com for help'
@@ -107,7 +106,6 @@ export default {
       }
     },
     async deleteAccount(){
-      console.log(this.user)
       if (this.user) {
         await this.$nuxt.$firebaseAuth.delete()
         this.cancelCustomerSubscription()

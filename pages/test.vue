@@ -114,7 +114,6 @@ export default {
   },
   watch: {
     emailExists(value) {
-      console.log(localStorage.getItem('stripeId'))
       if(value){
         this.$router.push('/member')
       }

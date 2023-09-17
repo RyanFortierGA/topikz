@@ -17,7 +17,6 @@ export default function constructFB(info) {
     //     stripeKey,
     //     stripeKeySecret,
     // } = info.public
-    console.log(info.public.firebase.apiKey)
 
     const secondFirebaseConfig = {
       apiKey: info.public.firebase.apiKey,
