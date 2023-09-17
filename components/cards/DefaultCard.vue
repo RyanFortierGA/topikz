@@ -39,10 +39,10 @@ export default {
     },
     methods:{
         startFinal(){
-            this.learnOpen = false
+            this.gaOpen = true
             setTimeout(() => {
-                this.gaOpen = true
-            }, 600);
+                this.learnOpen = false
+            }, 300);
         }
     }
 }

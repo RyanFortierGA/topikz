@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <NuxtLink to="/accountManagement">Account Management</NuxtLink>
-    <div class="bar"/>
+    <div class="bar">.</div>
     <div class="bottom">
       <span>Copyright 2023</span>
       <span>|</span>
@@ -33,9 +33,8 @@ export default {
 </script>
 <style lang="scss" scoped>
   .footer {
-    background: #B10F2E;
-    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.36);
     padding: 12px;
+    padding-top: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,10 +49,11 @@ export default {
     color: #fff;
     height: 84px;
     .bar{
-      background: #280000;
+      background: #fff;
       height: 1px;
       width: 100%;
-      opacity: 0.4;
+      opacity: 1;
+      font-size: 1px;
     }
     a{
       color: #fff;
@@ -63,6 +63,7 @@ export default {
       align-items: center;
       gap: 8px;
       justify-content: center;
+      padding-bottom: 12px;
     }
   }
 </style>

@@ -85,6 +85,7 @@ export default {
       return Math.floor(Math.random() * max);
     },
     getTopic(){
+      const cur = localStorage.getItem('currentType')
       const includedCards = []
       this.cards.forEach(card => {
         if(this.chosenFilters.includes(card.type)){
@@ -92,18 +93,21 @@ export default {
         }
       });
       const index = this.getRandomInt(includedCards.length)
-      this.currentCard = includedCards[index]
-      this.currentCard.label = this.cardInfo[this.currentCard.type].label
-      this.currentCard.description = this.cardInfo[this.currentCard.type].description
-      this.currentCard.details = this.cardInfo[this.currentCard.type].details
+      if(cur && cur === includedCards[index].type && this.chosenFilters.length > 1){
+        this.getTopic()
+      }else{
+        this.currentCard = includedCards[index]
+        this.currentCard.label = this.cardInfo[this.currentCard.type].label
+        this.currentCard.description = this.cardInfo[this.currentCard.type].description
+        this.currentCard.details = this.cardInfo[this.currentCard.type].details
+        localStorage.setItem("currentType", this.currentCard.type)
+      }
     }
   }
 }
 </script> 
 <style lang="scss" scoped>
 .home{
-    height: calc(94vh - 93px);
-    z-index:  999;
     h1{
       margin-top: 0px;
       margin-bottom: 0px;

@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar" >
-        <NuxtLink to="#">T<span>op</span>ikz</NuxtLink>
+        <NuxtLink :to="homeRoute">T<span>op</span>ikz</NuxtLink>
         <div class="icons">
-            <NuxtLink to="#" ><Icon name="material-symbols:help-outline" /></NuxtLink>
-            <NuxtLink to="/login"><Icon name="carbon:user-avatar-filled" /></NuxtLink>
+            <NuxtLink :to="homeRoute" ><Icon name="material-symbols:help-outline" /></NuxtLink>
+            <NuxtLink :to="loginRoute"><Icon name="carbon:user-avatar-filled" /></NuxtLink>
         </div>
     </nav>
 </template>
@@ -16,7 +16,18 @@ export default {
     },
     data() {
         return {
-            menuOpen: false
+            menuOpen: false,
+            loginRoute: null,
+            homeRoute: null
+        }
+    },
+    mounted(){
+        if(localStorage.localUser && localStorage.active !== 'false'){
+            this.loginRoute = '/accountManagement'
+            this.homeRoute = '/member'
+        } else{
+            this.loginRoute = '/login'
+            this.homeRoute = '/'
         }
     },
     methods:{}

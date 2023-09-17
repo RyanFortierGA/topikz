@@ -20,12 +20,15 @@
         localStorage.setItem("localUser", user.value.email)
       }
       //page checks
-      console.log(localStorage.active)
       if (localStorage.localUser && localStorage.active !== 'false') {
-          // continue on 
+        if(route.path === '/'){
+          router.push('/member')
+        }
       } else {
         if(localStorage.localUser){
-          router.push('/account')
+          if(route.path === '/member'){
+            router.push('/account')
+          }
         }else{
           if(!loginRoutes.includes(route.path))
           router.push('/')
