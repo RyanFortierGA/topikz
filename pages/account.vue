@@ -98,7 +98,6 @@ export default {
             });
           } else {
             // No documents match the query
-            console.log("No documents match the query.");
           }
         }).catch((error) => {
           console.error("Error querying Firestore:", error);
@@ -119,7 +118,6 @@ export default {
             }
           }//end of sub 2
         }, 500);
-
       }
     }
 
@@ -201,16 +199,15 @@ export default {
         const subscriptions = await stripe.subscriptions.list({
           customer: customerId,
         });
-        console.log(customerId)
 
         // Check if any subscription is active
         const hasActiveSubscription = subscriptions.data.some(subscription => {
           return subscription.status === 'active';
         });
         if(hasActiveSubscription){
-          localStorage.setItem("active", true)
+          localStorage.setItem("active", 'true')
         }else{
-          localStorage.setItem("active", false)
+          localStorage.setItem("active", 'false')
         }
         return hasActiveSubscription;
       } catch (error) {
