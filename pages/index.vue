@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <h1>Lets Talk...</h1>
-    <DefaultCard v-if="currentCard.type && ['convo'].includes(currentCard.type)" :info="currentCard"/>
-    <DraftCard v-if="currentCard.type && ['draft'].includes(currentCard.type)" :info="currentCard"/>
+    <DefaultCard v-if="currentCard.type && ['casualConvo', 'familyConvo'].includes(currentCard.type)" :info="currentCard"/>
+    <DraftCard v-if="currentCard.type && ['draftGame'].includes(currentCard.type)" :info="currentCard"/>
     <Controls v-if="currentCard.type" @rollNew="getTopic()"/>
     <svg class="loader" v-else version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
@@ -52,23 +52,32 @@ export default {
 
   data() {
     return{
-      chosenFilters: ['convo', 'draft', 'guessCompany'],
+      chosenFilters: ['casualConvo', 'draftGame', 'foundedComp', 'familyConvo',],
       currentCard: {},
       cardInfo: {
-        convo:{
+        casualConvo:{
           label: 'Casual Conversation',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your group",
-          details: 'details'
+          details: 'details',
+          icon: 'bx:bxs-conversation'
         },
-        draft:{
+        familyConvo:{
+          label: 'Family Conversation',
+          description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
+          details: 'details',
+          icon: 'bx:bxs-conversation'
+        },
+        draftGame:{
           label: 'Draft War',
           description: "War has begun, and the only way to settle this is by assembling a team of 5 that best fits the prompt.",
-          details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.'
+          details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.',
+          icon: 'mdi:sword-cross'
         },
-        guessCompany:{
+        foundedComp:{
           label: 'Guess the Company',
           description: "guess the company description",
-          details: 'details'
+          details: 'details',
+          icon: 'mdi:sword-cross'
         }
       }
     }
@@ -99,6 +108,7 @@ export default {
         this.currentCard.label = this.cardInfo[this.currentCard.type].label
         this.currentCard.description = this.cardInfo[this.currentCard.type].description
         this.currentCard.details = this.cardInfo[this.currentCard.type].details
+        this.currentCard.icon = this.cardInfo[this.currentCard.type].icon
         localStorage.setItem("currentType", this.currentCard.type)
       }
     }

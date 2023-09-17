@@ -2,7 +2,7 @@
 <div class="controls">
   <span @click="openFilters"><Icon name="ic:baseline-filter-alt" /></span>
   <span @click="rollNew"><Icon name="tabler:arrows-shuffle" /></span>
-  <span @click="openTools"><Icon name="mdi:toolbox" /></span>
+  <span @click="openTools"><Icon name="mdi:scoreboard" /></span>
 </div>
 </template>
 
