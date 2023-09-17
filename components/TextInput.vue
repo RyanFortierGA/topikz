@@ -88,6 +88,7 @@ label {
   display: block;
   margin-bottom: 4px;
   width: 100%;
+  color: #fff;
 }
 
 input {

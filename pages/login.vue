@@ -4,13 +4,14 @@
     <div class="grid justify-content-center p-2 lg:p-0" style="min-width: 80%">
       <div class="formWrapper">
           <div class="w-full md:w-10 mx-auto">
-            <h1>Login</h1>
-            <Form @submit="onSubmit" :validation-schema="schema" @invalid-submit="onInvalidSubmit">
+            <h1 v-if="!forgotPassword">Login</h1>
+             <h1 v-else>Reset Password</h1>
+            <Form @submit="onSubmit" :validation-schema="schema" @invalid-submit="onInvalidSubmit" v-if="!forgotPassword">
               <TextInput
                 name="email"
                 type="email"
                 label="Email"
-                placeholder="Your email address"
+                placeholder="Email address"
                 success-message="Got it, we won't spam you!"
               />
               <TextInput
@@ -27,6 +28,24 @@
                 type="submit"
                 :disabled="disabled"
               />
+              <NuxtLink to="/signup">No account? Sign up in 30 seconds!</NuxtLink>
+              <span class="forgot" @click="forgotPassword = !forgotPassword">Forgot Password</span>
+            </Form>
+            <Form @submit="passwordReset" v-else>
+              <TextInput
+                name="email"
+                type="email"
+                label="Email"
+                placeholder="Email address"
+                success-message="Got it, we won't spam you!"
+              />
+              <Button
+                :label="'Send Reset Email'"
+                class="w-full p-3 text-xl submit-btn"
+                ref="submitBtn"
+                type="submit"
+              />
+              <span class="forgot" @click="forgotPassword = !forgotPassword">Back to Login</span>
             </Form>
           </div>
       </div>
@@ -37,7 +56,7 @@
 import { Form } from 'vee-validate'
 import '~/utils/vee-validate-rules'
 import { User } from '~/models/User'
-import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from 'firebase/auth'
+import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence, sendPasswordResetEmail } from 'firebase/auth'
 import TextInput from '~/components/TextInput.vue'
 
 const { $toast, $firebaseAuth } = useNuxtApp()
@@ -46,6 +65,7 @@ const disabled = ref(false)
 const signinForm = ref({ email: '', password: '' })
 const submitBtn = ref()
 const token = useCookie('token')
+const forgotPassword = ref(false)
 
 const schema = ref({
   email: 'required|email',
@@ -69,10 +89,27 @@ const signin = async () => {
     disabled.value = false
   }
 }
+const reset = async () => {
+  try {
+    const reset = await sendPasswordResetEmail(
+      $firebaseAuth,
+      signinForm.value.email,
+    )
+    $toast.add({ severity: 'success', summary: 'Reset Sent:', detail: 'Check your email for further instructions on reseting your password', life: 3000 })
+  } catch (error) {
+    $toast.add({ severity: 'error', summary: 'Error Message', detail: 'Reset failed, make sure you have an account and typed in all correct info', life: 3000 })
+    signinForm.value = { email: '', password: '' }
+    disabled.value = false
+  }
+}
 
 function onSubmit({ email = '', password = '' }) {
   signinForm.value = { email, password }
   signin()
+}
+function passwordReset({ email = '', password = '' }) {
+  signinForm.value = { email, password }
+  reset()
 }
 
 function onInvalidSubmit() {
@@ -93,7 +130,7 @@ function onInvalidSubmit() {
      object-position: top center;
      width: calc(100% + 18px);
      opacity: 0.2;
-     height: calc(100vh - 116px);
+     height: calc(100vh );
   }
 }
 .submit-btn {
@@ -117,16 +154,30 @@ function onInvalidSubmit() {
   animation-iteration-count: infinite;
 }
 .formWrapper{
-  background: #fff;
   padding: 24px;
   border-radius:24px;
   width: 100%;
   position: relative;
   z-index: 999;
-  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.36);
+  background: transparent;
   h1{
     text-align: center;
     margin: 0px;
+    color: #fff;
+    display: block;
+    margin-bottom: 16px;
+  }
+  a{
+    color: #fff;
+    margin-top: 16px;
+    display: block;
+    text-align: center;
+  }
+  .forgot{
+    color: #fff;
+    margin-top: 16px;
+    display: block;
+    text-align: center;
   }
 }
 

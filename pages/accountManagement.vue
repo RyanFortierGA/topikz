@@ -159,7 +159,6 @@ export default {
   }
 }
 .formWrapper{
-  background: #fff;
   padding: 24px;
   border-radius:24px;
   width: 100%;

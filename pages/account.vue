@@ -236,8 +236,8 @@ export default {
             },
           ],
           mode: 'subscription',
-          success_url: 'https://localhost:3000/account',
-          cancel_url: 'https://localhost:3000/account',
+          success_url: window.location.origin + '/account',
+          cancel_url: window.location.origin + '/account',
         });
 
         // Redirect the user to the Checkout page

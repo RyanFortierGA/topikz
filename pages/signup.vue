@@ -21,12 +21,13 @@
                 success-message="Nice and secure!"
               />
               <Button
-                :label="disabled ? 'Please wait...' : 'Sign in'"
+                :label="disabled ? 'Please wait...' : 'Sign Up'"
                 class="w-full p-3 text-xl submit-btn"
                 ref="submitBtn"
                 type="submit"
                 :disabled="disabled"
               />
+              <NuxtLink to="/login">Already have an account? Login!</NuxtLink>
             </Form>
           </div>
         </div>
@@ -93,7 +94,7 @@ function onInvalidSubmit() {
      object-position: top center;
      width: calc(100% + 18px);
      opacity: 0.2;
-     height: calc(100vh - 116px);
+     height: calc(100vh);
   }
 }
 .submit-btn {
@@ -157,16 +158,16 @@ function onInvalidSubmit() {
   transform: scale(1.1);
 }
 .formWrapper{
-  background: #fff;
   padding: 24px;
   border-radius:24px;
   width: 100%;
   position: relative;
   z-index: 999;
-  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.36);
   h1{
     text-align: center;
     margin: 0px;
+    display: block;
+    margin-bottom: 16px;
   }
 }
 </style>

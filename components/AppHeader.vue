@@ -18,10 +18,12 @@ export default {
         return {
             menuOpen: false,
             loginRoute: null,
-            homeRoute: null
+            homeRoute: null,
+            user: null
         }
     },
     mounted(){
+        this.user = localStorage.localUser
         if(localStorage.localUser && localStorage.active !== 'false'){
             this.loginRoute = '/accountManagement'
             this.homeRoute = '/member'
@@ -30,6 +32,19 @@ export default {
             this.homeRoute = '/'
         }
     },
+    watch: {
+    user(value) {
+      if(value){
+        if(localStorage.localUser && localStorage.active !== 'false'){
+            this.loginRoute = '/accountManagement'
+            this.homeRoute = '/member'
+        } else{
+            this.loginRoute = '/login'
+            this.homeRoute = '/'
+        }
+      }
+    },
+  },
     methods:{}
 }
 </script>
