@@ -124,6 +124,7 @@ export default {
 <style lang="scss" scoped>
 .home{
   overflow: hidden;
+  max-width: 100vw;
     h1{
       margin-top: 0px;
       margin-bottom: 0px;
@@ -183,7 +184,7 @@ export default {
     .hideCard{
       transform: translateX(500px);
       position: absolute;
-      top: 16%;
+      top: 15%;
       animation-name: hider;
       animation-duration: .5s;
       animation-fill-mode: forwards;
@@ -210,31 +211,6 @@ export default {
       100% {
         transform: translateX(0px);
         display: block;
-      }
-    }
-    @-webkit-keyframes hider {
-      /* Webkit prefix */
-      0% {
-        display: block;
-        -webkit-transform: translateX(0px);
-      }
-      99%{
-        display: block;
-      }
-      100% {
-        display: none;
-        -webkit-transform: translateX(420px);
-      }
-    }
-    @-webkit-keyframes shower {
-      /* Webkit prefix */
-      0% {
-        display: block;
-        -webkit-transform: translateX(420px);
-      }
-      100% {
-        display: block;
-        -webkit-transform: translateX(0px);
       }
     }
 }
