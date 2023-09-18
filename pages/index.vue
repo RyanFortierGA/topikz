@@ -177,14 +177,16 @@ export default {
       animation: shower;
       animation-duration: .5s;
       animation-fill-mode: forwards;
+      height: 400px;
     }
     .hideCard{
       transform: translateX(500px);
       position: absolute;
-      top: 15%;
+      top: 16%;
       animation-name: hider;
       animation-duration: .5s;
       animation-fill-mode: forwards;
+      height: 400px;
     }
     @keyframes hider {
       0% {
@@ -195,18 +197,43 @@ export default {
         display: block;
       }
       100% {
-        transform: translateX(380px);
+        transform: translateX(400px);
         display: none;
       }
     }
      @keyframes shower {
       0% {
         display: block;
-        transform: translateX(380px);
+        transform: translateX(400px);
       }
       100% {
         transform: translateX(0px);
         display: block;
+      }
+    }
+    @-webkit-keyframes hider {
+      /* Webkit prefix */
+      0% {
+        display: block;
+        -webkit-transform: translateX(0px);
+      }
+      99%{
+        display: block;
+      }
+      100% {
+        display: none;
+        -webkit-transform: translateX(420px);
+      }
+    }
+    @-webkit-keyframes shower {
+      /* Webkit prefix */
+      0% {
+        display: block;
+        -webkit-transform: translateX(420px);
+      }
+      100% {
+        display: block;
+        -webkit-transform: translateX(0px);
       }
     }
 }
