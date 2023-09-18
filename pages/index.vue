@@ -123,6 +123,7 @@ export default {
 </script> 
 <style lang="scss" scoped>
 .home{
+  overflow: hidden;
     h1{
       margin-top: 0px;
       margin-bottom: 0px;
