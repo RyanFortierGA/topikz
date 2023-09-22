@@ -1,6 +1,6 @@
 <template>
     <div class="draftCard card" >
-        <div :class="learnOpen? 'cardWrap showDetails' : 'cardWrap'">
+        <div :class="[learnOpen? 'cardWrap showDetails' : 'cardWrap', info.type]">
             <span v-if="info.icon" class="topic"><Icon :name="info.icon" />{{info.label}}</span>
             <h2>{{info.heading}}</h2>
             <h4 v-if="!gaOpen">How it Works:</h4>
@@ -128,6 +128,7 @@ export default {
             margin-bottom: 12px;
             .subHeader{
                 margin-bottom: 16px;
+                font-size: 20px;
             }
             .icons{
                 display: flex;
@@ -156,7 +157,7 @@ export default {
         border-bottom-right-radius: 24px;
         border-bottom-left-radius: 24px;
         height: 330px;
-        z-index: -1;
+        z-index: 1;
         color: #fff;
         h4{
             position: relative;
@@ -196,6 +197,70 @@ export default {
             font-size: 18px;
             left: 36%;
         }
+    }
+    .familyConvo .topic{
+        color: #e84f20;
+        border: 1px solid #e84f20;
+    }
+    .politicalConvo .topic{
+        color: #2ab865;
+        border: 1px solid #2ab865;
+    }
+    .dateConvo .topic{
+        color: #c61470;
+        border: 1px solid #c61470;
+    }
+    .wyrConvo .topic{
+        color: #94512a;
+        border: 1px solid #94512a;
+    }
+    .newsConvo .topic{
+        color: #71cfeb;
+        border: 1px solid #71cfeb;
+    }
+    .philConvo .topic{
+        color: #8c8c8c;
+        border: 1px solid #8c8c8c;
+    }
+    .hardConvo .topic{
+        color: #2a6a15;
+        border: 1px solid #2a6a15;
+    }
+    .hotConvo .topic{
+        color: #d00c19;
+        border: 1px solid #d00c19;
+    }
+    .ovoComp .topic{
+        color: #d750ac;
+        border: 1px solid #d750ac;
+    }
+    .fivesecComp .topic{
+        color: #5041ae;
+        border: 1px solid #5041ae;
+    }
+    .foundedComp .topic{
+        color: #797936;
+        border: 1px solid #797936;
+    }
+    .celebComp .topic{
+        color: #482203;
+        border: 1px solid #482203;
+    }
+    .mlComp .topic{
+        color: #8fd7af;
+        border: 1px solid #8fd7af;
+    }
+    .dykGame .topic{
+        color: #3d2e4a;
+        border: 1px solid #3d2e4a;
+    }
+    .likelyGroups .topic{
+        color: #292811;
+        border: 1px solid #292811;
+    }
+    .splitGroups .topic{
+        color: #85a45a;
+        border: 1px solid #85a45a;
     }
 }
 </style>

@@ -158,7 +158,7 @@ export default {
         border-bottom-right-radius: 24px;
         border-bottom-left-radius: 24px;
         height: 330px;
-        z-index: -1;
+        z-index: 1;
         color: #fff;
         h4{
             position: relative;

@@ -1,33 +1,29 @@
 <template>
-    <div class="draftCard card">
-        <div :class="learnOpen? 'cardWrap showDetails' : 'cardWrap'">
-            <span  v-if="info.icon" class="topic"><Icon :name="info.icon" />{{info.label}}</span>
+    <div class="draftCard card" >
+        <div :class="[learnOpen? 'cardWrap showDetails' : 'cardWrap', info.type]">
+            <span v-if="info.icon" class="topic"><Icon :name="info.icon" />{{info.label}}</span>
             <h2>{{info.heading}}</h2>
             <h4 v-if="!gaOpen">How it Works:</h4>
             <p v-if="!gaOpen">{{info.description}}</p>
             <div class="gameArea" v-else>
-                    <div class="left">
-                        <input type="text" placeholder="Team 1 Round #1"/>
-                        <input type="text" placeholder="Team 1 Round #2"/>
-                        <input type="text" placeholder="Team 1 Round #3"/>
-                        <input type="text" placeholder="Team 1 Round #4"/>
-                        <input type="text" placeholder="Team 1 Round #5"/>
-                    </div>
-                    <div class="right">
-                        <input type="text" placeholder="Team 2 Round #1"/>
-                        <input type="text" placeholder="Team 2 Round #2"/>
-                        <input type="text" placeholder="Team 2 Round #3"/>
-                        <input type="text" placeholder="Team 2 Round #4"/>
-                        <input type="text" placeholder="Team 2 Round #5"/>
-                    </div>
+                <h4 class="subHeader" v-if="info.type !== 'simplifyGroups'">The Answer is:</h4> 
+                <h4 class="subHeader wordHeader" v-else>The word is:</h4> 
+
+                <div class="answer" v-if="info.type !== 'simplifyGroups'">
+                    <Icon name="icon-park-solid:correct"/>
+                    {{info.answer}}
+                </div>
+                <div class="word" v-else>
+                    {{info.answer}}
+                </div>
             </div>
-            <span class="selector" @click="gaOpen = !gaOpen" v-if="!gaOpen">START</span>
+            <span class="selector" @click="gaOpen = !gaOpen" v-if="!gaOpen">Reveal Answer</span>
         </div>
         <div class="description">
             <h4 v-if="learnOpen">The Details:</h4>
             <p v-if="learnOpen">{{info.details}}</p>
             <span v-if="!learnOpen" @click="learnOpen = !learnOpen">Learn More <Icon name="mingcute:finger-press-fill" /></span>
-            <span class="selector" v-else @click="startFinal">{{gaOpen? 'Continue' : 'START'}}</span>
+            <span class="selector" v-else @click="startFinal">{{gaOpen? 'Reveal' : 'Reveal'}}</span>
         </div>
     </div>
 </template>
@@ -56,6 +52,7 @@ export default {
             }, 300);
         }
     },
+
     watch: {
         reset(value) {
             if(value){
@@ -92,8 +89,8 @@ export default {
             align-items: center;
             gap: 8px;
             font-family: Nunito-bold;
-            color: #9f6f09;
-            border: 1px solid #9f6f09;
+            color: #FFB930;
+            border: 1px solid #FFB930;
             padding: 4px 8px;
             width: fit-content;
             border-radius: 8px;
@@ -106,7 +103,7 @@ export default {
             font-size: 20px;
             margin-bottom: 16px;
             letter-spacing: 0.1px;
-            height: 54px;
+            height: 74px;
         }
         h4{
             font-size: 16px;
@@ -130,19 +127,46 @@ export default {
         .gameArea{
             display: flex;
             align-items: center;
+            flex-direction: column;
+            justify-content: center;
             gap: 8px;
             margin-bottom: 12px;
-            .left,.right{
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
+            .subHeader{
+                margin-bottom: 16px;
+                font-size: 20px;
+                color: #2a6a15;
             }
-            input{
-                border: 1px solid #000;
-                border-radius: 8px;
-                padding: 4px 8px;
-                max-width: 38vw;
+            .wordHeader{
+                color: #3e2e33;
+            }
+            .answer{
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                position: relative;
+                border: 1px solid #2ab865;
+                color: #2ab865;
+                padding: 8px 12px;
+                border-radius: 100px;
+                font-size: 18px;
+                text-align: center;
+                svg{
+                    width: 32px;
+                    height: 32px;
+                    color: #2ab865;
+                }
+            }
+            .word{
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                position: relative;
+                border: 1px solid #3e2e33;
+                color: #3e2e33;
+                padding: 8px 12px;
+                border-radius: 100px;
+                font-size: 18px;
+                text-align: center;
             }
         }
     }
@@ -198,6 +222,34 @@ export default {
             font-size: 18px;
             left: 36%;
         }
+    }
+    .riddleConvo .topic{
+        color: #60ee39;
+        border: 1px solid #60ee39;
+    }
+    .triviaComp .topic{
+        color: #c14a65;
+        border: 1px solid #c14a65;
+    }
+    .ftlComp .topic{
+        color: #c65804;
+        border: 1px solid #c65804;
+    }
+    .castComp .topic{
+        color: #283b6c;
+        border: 1px solid #283b6c;
+    }
+    .songComp .topic{
+        color: #39044b;
+        border: 1px solid #39044b;
+    }
+    .syncedGame .topic{
+        color: #ce3e6c;
+        border: 1px solid #ce3e6c;
+    }
+    .simplifyGroups .topic{
+        color: #3e2e33;
+        border: 1px solid #3e2e33;
     }
 }
 </style>
