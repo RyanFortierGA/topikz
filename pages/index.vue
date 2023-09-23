@@ -76,6 +76,12 @@
     <transition name="flap">
       <AnswerCard class="cardWrap" v-if="currentCard.type === 'simplifyGroups'" :info="currentCard" :reset="reset"/>
     </transition>
+    <transition name="flip">
+      <TodCard class="cardWrap" v-if="currentCard.type === 'todConvo'" :info="currentCard" :reset="reset"/>
+    </transition>
+    <transition name="flap">
+      <RevealCard class="cardWrap" v-if="currentCard.type === 'revealComp'" :info="currentCard" :reset="reset"/>
+    </transition>
     <Controls v-if="currentCard.type" @rollNew="getTopic()"/>
     <svg class="loader" v-else version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
@@ -99,6 +105,8 @@ import Controls from '../components/Controls.vue';
 import DefaultCard from '../components/cards/DefaultCard.vue';
 import DraftCard from '../components/cards/DraftCard.vue';
 import AnswerCard from '../components/cards/AnswerCard.vue';
+import TodCard from '../components/cards/TodCard.vue';
+import RevealCard from '../components/cards/RevealCard.vue';
 
 export default {
   setup() {
@@ -131,14 +139,14 @@ export default {
     const { data: cards } = useSanityQuery(getCards)
     return { cards }
   },
-  components:{Controls, DefaultCard, DraftCard, AnswerCard},
+  components:{Controls, DefaultCard, DraftCard, AnswerCard, TodCard, RevealCard},
 
   data() {
     return{
-      chosenFilters: ['casualConvo', 'draftGame', 'familyConvo', 'politicalConvo', 'dateConvo', 'wyrConvo', 'newsConvo', 'philConvo','hardConvo', 'hotConvo', 'riddleConvo', 
-      'ovoComp', 'fivesecComp', 'ftlComp', 'triviaComp' ,'foundedComp', 'celebComp', 'mlComp', 'castComp', 'songComp',
+      chosenFilters: ['casualConvo', 'draftGame', 'familyConvo', 'politicalConvo', 'dateConvo', 'wyrConvo', 'newsConvo', 'philConvo','hardConvo', 'hotConvo', 'riddleConvo', 'todConvo', 
+      'ovoComp', 'fivesecComp', 'ftlComp', 'triviaComp' ,'foundedComp', 'celebComp', 'mlComp', 'castComp', 'songComp', 'revealComp',
       'dykGame', 'syncedGame',
-      'likelyGroups', 'simplifyGroups', 'splitGroups'],
+      'likelyGroups', 'simplifyGroups', 'splitGroups',],
       currentCard: {},
       reset: false,
       cardInfo: {
@@ -202,6 +210,12 @@ export default {
           details: 'details',
           icon: 'fluent:thinking-20-filled'
         },
+        todConvo:{
+          label: 'Truth or Dare',
+          description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
+          details: 'details',
+          icon: 'mdi:arrow-left-right-bold'
+        },
         triviaComp:{
           label: 'Trivia Challenge',
           description: "You are going against eachother head to head...",
@@ -255,6 +269,12 @@ export default {
           description: "You are going against eachother head to head...",
           details: 'details',
           icon: 'iconamoon:music-album-fill' 
+        },
+        revealComp:{
+          label: 'Reveal',
+          description: "You are going against eachother head to head...",
+          details: 'details',
+          icon: 'mdi:eye-check' 
         },
         draftGame:{
           label: 'Draft War',
