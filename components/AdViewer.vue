@@ -90,10 +90,8 @@
     z-index: 10000;
     overflow: scroll;
     pointer-events: none;
-
     .modalContent {
-      padding: 40px 40px 40px 40px;
-      margin: 18px; 
+      padding: 18px;
       width: 100%;
       height: 100% !important;
       position: relative;
@@ -151,7 +149,6 @@
     }
     .buttons{
       display: flex;
-      flex-direction: column;
       align-items: center;
       gap: 12px;
       margin-top:8px;
