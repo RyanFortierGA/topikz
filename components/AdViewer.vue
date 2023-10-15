@@ -1,9 +1,9 @@
 <template>
   <div
-    ref='modal'
+    ref='modalAd'
     :class="open ? 'modal openModal' : 'modal' "
   >
-    <div id='modalContent' class='modalContent'>
+    <div id='modalContentAd' class='modalContent'>
       <div class="adWrap">
         <Adsbygoogle />
       </div>
@@ -17,7 +17,7 @@
           <li>28+ Topik types</li>
           <li>Filter by the Types you want to play</li>
           <li>Over 600 prompts and counting</li>
-          <li>Keep a running scoreboard for you and your friends</li>
+          <li>Keep a scorecard for you and your friends</li>
           <li>More Types and content added often</li>
         </ul>
         <div class="buttons">
@@ -129,8 +129,8 @@
   .adWrap{
     min-width: 100%;
     max-width: 100%;
-    min-height: 100%;
-    max-height: 100%;
+    min-height: 160px;
+    max-height: 160px;
     margin-bottom: 8px;
   }
   .info{
@@ -153,13 +153,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
+      margin-top:8px;
       a{
         border-radius: 100px;
         padding: 4px 12px;
         background: #14e31b;
         color: #fff;
         text-decoration: none;
+        font-size: 20px;
       }
       span{
         opacity:0.4;
