@@ -98,8 +98,8 @@
           <animateTransform attributeType="xml" attributeName="transform" type="translate" values="0 0; 0 20; 0 0" begin="0.4s" dur="0.6s" repeatCount="indefinite" />
         </rect>
     </svg>
-    <div class="ad">
-      <!-- <adsbygoogle /> -->
+    <div class="adWrap">
+      <Adsbygoogle />
     </div>
     <Filters v-if="loaded" :open='filterOpen' @onClose='toggleFilters' @updateFilters='updateFilters' :chosenFilters="chosenFilters" :cardInfo="cardInfo"/>
   </div>

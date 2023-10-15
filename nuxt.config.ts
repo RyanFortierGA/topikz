@@ -66,10 +66,9 @@ export default defineNuxtConfig({
   target: 'static',
   
   plugins: [{ src: "@/plugins/aos", ssr: false, mode: "client" }],
-  modules: ['nuxt-icon', '@tresjs/nuxt', '@nuxtjs/sanity'],
-  //'@nuxtjs/google-adsense'
-  // 'google-adsense': {
-  //   id: 'pub-9081500660838093',
-  //   test: true
-  // }
+  modules: ['nuxt-icon', '@tresjs/nuxt', '@nuxtjs/sanity','@nuxtjs/google-adsense'],
+  'google-adsense': {
+    id: 'pub-9081500660838093',
+    test: true
+  }
 })
