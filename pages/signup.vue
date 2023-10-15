@@ -41,6 +41,8 @@ import { User } from '~/models/User'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import TextInput from '~/components/TextInput.vue'
 
+localStorage.setItem('freeCount', 0)
+
 const { $toast, $firebaseAuth } = useNuxtApp()
 const user$ = useUser()
 const disabled = ref(false)

@@ -98,10 +98,9 @@
           <animateTransform attributeType="xml" attributeName="transform" type="translate" values="0 0; 0 20; 0 0" begin="0.4s" dur="0.6s" repeatCount="indefinite" />
         </rect>
     </svg>
-    <div class="adWrap">
-      <Adsbygoogle />
-    </div>
+    
     <Filters v-if="loaded" :open='filterOpen' @onClose='toggleFilters' @updateFilters='updateFilters' :chosenFilters="chosenFilters" :cardInfo="cardInfo"/>
+    <AdViewer v-if="loaded" :open='adOpen' @onClose='adReset'/>
   </div>
 </template>
 <script>
@@ -161,6 +160,7 @@ export default {
       reset: false,
       loaded: false,
       filterOpen: false,
+      adOpen: false,
       cardInfo: {
         casualConvo:{
           label: 'Casual Conversation',
@@ -351,6 +351,9 @@ export default {
         this.chosenFilters = localStorage.getItem('localFilters').split(",");
         console.log(this.chosenFilters, 'neww')
       }
+      if(localStorage.getItem('freeCount') >= 10){
+        localStorage.setItem('freeCount', 9)
+      }
       this.getTopic()
     }
   },
@@ -362,37 +365,53 @@ export default {
       this.filterOpen = !this.filterOpen
     },
     getTopic(){
-      const cur = localStorage.getItem('currentType')
-      const includedCards = []
-      this.cards.forEach(card => {
-        if(this.chosenFilters.includes(card.type)){
-          includedCards.push(card)
-        }
-      });
-      const index = this.getRandomInt(includedCards.length)
-      if(cur && cur === includedCards[index].type && this.chosenFilters.length > 1){
-        this.getTopic()
+      let curCount = parseInt(localStorage.getItem('freeCount'))
+      if(!curCount){
+        curCount = 0
+      }
+      console.log(curCount)
+      if(curCount >= 10){
+        this.adOpen = true
       }else{
-        //add opt sounds?
-        // const audio = new Audio('audio_file.mp3');
-        // audio.play();
-        this.currentCard = includedCards[index]
-        this.currentCard.label = this.cardInfo[this.currentCard.type].label
-        this.currentCard.description = this.cardInfo[this.currentCard.type].description
-        this.currentCard.details = this.cardInfo[this.currentCard.type].details
-        this.currentCard.icon = this.cardInfo[this.currentCard.type].icon
-        localStorage.setItem("currentType", this.currentCard.type)
-        this.reset = true
-        setTimeout(() => {
-          this.reset = false
-          this.loaded = true
-        }, 300);
+        const cur = localStorage.getItem('currentType')
+        const includedCards = []
+        this.cards.forEach(card => {
+          if(this.chosenFilters.includes(card.type)){
+            includedCards.push(card)
+          }
+        });
+        const index = this.getRandomInt(includedCards.length)
+        if(cur && cur === includedCards[index].type && this.chosenFilters.length > 1){
+          this.getTopic()
+        }else{
+          //add opt sounds?
+          // const audio = new Audio('audio_file.mp3');
+          // audio.play();
+          this.currentCard = includedCards[index]
+          this.currentCard.label = this.cardInfo[this.currentCard.type].label
+          this.currentCard.description = this.cardInfo[this.currentCard.type].description
+          this.currentCard.details = this.cardInfo[this.currentCard.type].details
+          this.currentCard.icon = this.cardInfo[this.currentCard.type].icon
+          localStorage.setItem("currentType", this.currentCard.type)
+          this.reset = true
+          curCount = curCount += 1
+          localStorage.setItem('freeCount', curCount)
+          setTimeout(() => {
+            this.reset = false
+            this.loaded = true
+          }, 300);
+        }
       }
     },
     updateFilters(filters){
       this.chosenFilters = filters
       this.getTopic()
       localStorage.setItem("localFilters", filters)
+    },
+    adReset(){
+      localStorage.setItem('freeCount', 0)
+      this.adOpen = !this.adOpen
+      this.getTopic()
     },
   }
 }
