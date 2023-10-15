@@ -6,24 +6,23 @@
             <h4 v-if="!gaOpen">How it Works:</h4>
             <p v-if="!gaOpen">{{info.description}}</p>
             <div class="gameArea" v-else>
-                <h4 class="subHeader" v-if="info.type !== 'simplifyGroups'">The Answer is:</h4> 
-                <h4 class="subHeader wordHeader" v-else>The word is:</h4> 
-
-                <div class="answer" v-if="info.type !== 'simplifyGroups'">
-                    <Icon name="icon-park-solid:correct"/>
-                    {{info.answer}}
+                <div class="option" @click="showWho1 = !showWho1">
+                    <h4 :class="showWho1?'subHeader hide' : 'subHeader truthHead'" >Who 1</h4>
+                    <span :class="showWho1?'showOpt' : 'hide'">{{info.who1}} (tap to hide)</span> 
                 </div>
-                <div class="word" v-else>
-                    {{info.answer}}
+                <h3>OR</h3>
+                <div class="option" @click="showWho2 = !showWho2">
+                    <h4 :class="showWho2?'subHeader hide' : 'subHeader dareHead'" >Who 2</h4>
+                    <span :class="showWho2?'showOpt' : 'hide'">{{info.who2}} (tap to hide)</span> 
                 </div>
             </div>
-            <span class="selector" @click="gaOpen = !gaOpen" v-if="!gaOpen">REVEAL</span>
+            <span class="selector" @click="gaOpen = !gaOpen" v-if="!gaOpen">START</span>
         </div>
         <div class="description">
             <h4 v-if="learnOpen">The Details:</h4>
             <p v-if="learnOpen">{{info.details}}</p>
             <span v-if="!learnOpen" @click="learnOpen = !learnOpen">Learn More <Icon name="mingcute:finger-press-fill" /></span>
-            <span class="selector" v-else @click="startFinal">{{gaOpen? 'REVEAL' : 'REVEAL'}}</span>
+            <span class="selector" v-else @click="startFinal">{{gaOpen? 'CONTINUE' : 'START'}}</span>
         </div>
     </div>
 </template>
@@ -42,6 +41,8 @@ export default {
         return{
             gaOpen: false,
             learnOpen: false,
+            showWho1: false,
+            showWho2: false
         }
     },
     methods:{
@@ -89,8 +90,8 @@ export default {
             align-items: center;
             gap: 8px;
             font-family: Nunito-bold;
-            color: #FFB930;
-            border: 1px solid #FFB930;
+            color: #f4e544;
+            border: 1px solid #f4e544;
             padding: 4px 8px;
             width: fit-content;
             border-radius: 8px;
@@ -103,8 +104,7 @@ export default {
             font-size: 20px;
             margin-bottom: 16px;
             letter-spacing: 0.1px;
-            line-height: 1.3;
-            height: 74px;
+            height: 54px;
         }
         h4{
             font-size: 16px;
@@ -130,44 +130,41 @@ export default {
             align-items: center;
             flex-direction: column;
             justify-content: center;
-            gap: 8px;
+            gap: 16px;
             margin-bottom: 12px;
+            .option{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                z-index: 999;
+            }
+            h3{
+                margin: 0px;
+            }
             .subHeader{
-                margin-bottom: 16px;
                 font-size: 20px;
-                color: #2a6a15;
+                transition: 1s;
             }
-            .wordHeader{
-                color: #3e2e33;
-            }
-            .answer{
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                position: relative;
-                border: 1px solid #2ab865;
-                color: #2ab865;
-                padding: 8px 12px;
+            .truthHead{
                 border-radius: 100px;
-                font-size: 18px;
-                text-align: center;
-                svg{
-                    width: 32px;
-                    height: 32px;
-                    color: #2ab865;
-                }
+                padding: 10px 24px;
+                background: #b6d41f;
+                color: #fff;
             }
-            .word{
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                position: relative;
-                border: 1px solid #3e2e33;
-                color: #3e2e33;
-                padding: 8px 12px;
+            .dareHead{
                 border-radius: 100px;
-                font-size: 18px;
-                text-align: center;
+                padding: 10px 24px;
+                background: #f511d3;
+                color: #fff;
+            }
+            .hide{
+                position: absolute;
+                opacity: 0;
+            }
+            .showOpt{
+                display: block;
+                opacity: 1;
+                position: relative;
             }
         }
     }
@@ -224,33 +221,6 @@ export default {
             left: 36%;
         }
     }
-    .riddleConvo .topic{
-        color: #60ee39;
-        border: 1px solid #60ee39;
-    }
-    .triviaComp .topic{
-        color: #c14a65;
-        border: 1px solid #c14a65;
-    }
-    .ftlComp .topic{
-        color: #c65804;
-        border: 1px solid #c65804;
-    }
-    .castComp .topic{
-        color: #283b6c;
-        border: 1px solid #283b6c;
-    }
-    .songComp .topic{
-        color: #39044b;
-        border: 1px solid #39044b;
-    }
-    .syncedGame .topic{
-        color: #ce3e6c;
-        border: 1px solid #ce3e6c;
-    }
-    .simplifyGroups .topic{
-        color: #3e2e33;
-        border: 1px solid #3e2e33;
-    }
+    
 }
 </style>

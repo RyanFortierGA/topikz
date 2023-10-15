@@ -6,12 +6,13 @@
             <h4 v-if="!gaOpen">How it Works:</h4>
             <p v-if="!gaOpen">{{info.description}}</p>
             <div class="gameArea" v-else>
-                <h4 class="subHeader">Well... get to talking!</h4> 
                 <div class="icons">
                     <Icon name="tdesign:user-talk-1"/>
                     <Icon name="game-icons:conversation" />
                     <Icon class="mirror" name="tdesign:user-talk-1"/>
                 </div>
+                <h4 class="subHeader">Well... get to talking!</h4> 
+
             </div>
             <span class="selector" @click="gaOpen = !gaOpen" v-if="!gaOpen">START</span>
         </div>
@@ -99,7 +100,7 @@ export default {
             font-size: 20px;
             margin-bottom: 16px;
             letter-spacing: 0.1px;
-            height: 54px;
+            height: 74px;
         }
         h4{
             font-size: 16px;
@@ -117,6 +118,7 @@ export default {
             color: #fff;
             width: fit-content;
             margin: auto;
+            margin-top: -10px;
             display: block;
             font-family: Nunito-bold;
         }
@@ -135,6 +137,7 @@ export default {
                 align-items: center;
                 gap: 16px;
                 position: relative;
+                margin-top: 16px;
                 svg{
                     width: 64px;
                     height: 64px;

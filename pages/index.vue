@@ -82,7 +82,10 @@
     <transition name="flap">
       <RevealCard class="cardWrap" v-if="currentCard.type === 'revealComp'" :info="currentCard" :reset="reset"/>
     </transition>
-    <Controls v-if="currentCard.type" @rollNew="getTopic()"/>
+    <transition name="flip">
+      <WhoCard class="cardWrap" v-if="currentCard.type === 'whoGame'" :info="currentCard" :reset="reset"/>
+    </transition>
+    <Controls v-if="currentCard.type" @rollNew="getTopic()" @openFilters="toggleFilters"/>
     <svg class="loader" v-else version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
         <rect x="20" y="50" width="4" height="10" fill="#fff">
@@ -98,6 +101,7 @@
     <div class="ad">
       <!-- <adsbygoogle /> -->
     </div>
+    <Filters v-if="loaded" :open='filterOpen' @onClose='toggleFilters' @updateFilters='updateFilters' :chosenFilters="chosenFilters" :cardInfo="cardInfo"/>
   </div>
 </template>
 <script>
@@ -107,6 +111,8 @@ import DraftCard from '../components/cards/DraftCard.vue';
 import AnswerCard from '../components/cards/AnswerCard.vue';
 import TodCard from '../components/cards/TodCard.vue';
 import RevealCard from '../components/cards/RevealCard.vue';
+import WhoCard from '../components/cards/WhoCard.vue';
+import Filters from '../components/Filters.vue';
 
 export default {
   setup() {
@@ -139,82 +145,99 @@ export default {
     const { data: cards } = useSanityQuery(getCards)
     return { cards }
   },
-  components:{Controls, DefaultCard, DraftCard, AnswerCard, TodCard, RevealCard},
+  components:{Controls, DefaultCard, DraftCard, AnswerCard, TodCard, RevealCard, WhoCard, Filters},
 
   data() {
     return{
-      chosenFilters: ['casualConvo', 'draftGame', 'familyConvo', 'politicalConvo', 'dateConvo', 'wyrConvo', 'newsConvo', 'philConvo','hardConvo', 'hotConvo', 'riddleConvo', 'todConvo', 
+      allFilters: ['casualConvo', 'familyConvo', 'politicalConvo', 'dateConvo', 'wyrConvo', 'newsConvo', 'philConvo','hardConvo', 'hotConvo', 'riddleConvo', 'todConvo', 
       'ovoComp', 'fivesecComp', 'ftlComp', 'triviaComp' ,'foundedComp', 'celebComp', 'mlComp', 'castComp', 'songComp', 'revealComp',
-      'dykGame', 'syncedGame',
+      'dykGame', 'syncedGame', 'whoGame', 'draftGame',
+      'likelyGroups', 'simplifyGroups', 'splitGroups',],
+      chosenFilters: ['casualConvo', 'familyConvo', 'politicalConvo', 'dateConvo', 'wyrConvo', 'newsConvo', 'philConvo','hardConvo', 'hotConvo', 'riddleConvo', 'todConvo', 
+      'ovoComp', 'fivesecComp', 'ftlComp', 'triviaComp' ,'foundedComp', 'celebComp', 'mlComp', 'castComp', 'songComp', 'revealComp',
+      'dykGame', 'syncedGame', 'whoGame', 'draftGame',
       'likelyGroups', 'simplifyGroups', 'splitGroups',],
       currentCard: {},
       reset: false,
+      loaded: false,
+      filterOpen: false,
       cardInfo: {
         casualConvo:{
           label: 'Casual Conversation',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your group",
           details: 'details',
-          icon: 'bx:bxs-conversation'
+          icon: 'bx:bxs-conversation',
+          hex: '#FFB930'
         },
         familyConvo:{
           label: 'Family Conversation',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
           details: 'details',
-          icon: 'carbon:pedestrian-family'
+          icon: 'carbon:pedestrian-family',
+          hex: '#e84f20'
         },
         politicalConvo:{
           label: 'Political Conversation',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
           details: 'details',
-          icon: 'map:political'
+          icon: 'map:political',
+          hex: '#2ab865'
         },
         dateConvo:{
           label: 'Date Night',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
           details: 'details',
-          icon: 'ic:round-favorite'
+          icon: 'ic:round-favorite',
+          hex: '#c61470'
         },
         wyrConvo:{
           label: 'Would You Rather',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
           details: 'details',
-          icon: 'game-icons:choice'
+          icon: 'game-icons:choice',
+          hex: '#94512a'
         },
         newsConvo:{
           label: 'Todays News',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
           details: 'details',
-          icon: 'material-symbols:breaking-news-alt-1'
+          icon: 'material-symbols:breaking-news-alt-1',
+          hex: '#71cfeb'
         },
         philConvo:{
           label: 'Philosophical Convo',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
           details: 'details',
-          icon: 'icon-park-solid:thinking-problem'
+          icon: 'icon-park-solid:thinking-problem',
+          hex: '#8c8c8c'
         },
         hardConvo:{
           label: 'Hard Hitting',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
           details: 'details',
-          icon: 'material-symbols:hardware-rounded'
+          icon: 'material-symbols:hardware-rounded',
+          hex: '#2a6a15'
         },
         hotConvo:{
           label: 'Hot Takes',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
           details: 'details',
-          icon: 'mdi:fire-alert'
+          icon: 'mdi:fire-alert',
+          hex: '#d00c19'
         },
         riddleConvo:{
           label: 'Riddle This',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
           details: 'details',
-          icon: 'fluent:thinking-20-filled'
+          icon: 'fluent:thinking-20-filled',
+          hex: '#60ee39'
         },
         todConvo:{
           label: 'Truth or Dare',
           description: "There isn't much to be said about this type of topic, its simply to help facilatate conversation in your Family",
           details: 'details',
-          icon: 'mdi:arrow-left-right-bold'
+          icon: 'mdi:arrow-left-right-bold',
+          hex: '#2f8c70'
         },
         triviaComp:{
           label: 'Trivia Challenge',
@@ -294,6 +317,12 @@ export default {
           details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.',
           icon: 'material-symbols:sync-rounded'
         },
+        whoGame:{
+          label: 'Who Am I',
+          description: "Are yall on the same mindset? if not, yall need to be for this one.",
+          details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.',
+          icon: 'tabler:user-question'
+        },
         likelyGroups:{
           label: 'Who is most likely',
           description: "Are yall on the same mindset? if not, yall need to be for this one.",
@@ -318,13 +347,19 @@ export default {
 
   mounted(){
     if(this.cards){
-      console.log(this.cards)
+      if(localStorage.getItem('localFilters')){
+        this.chosenFilters = localStorage.getItem('localFilters').split(",");
+        console.log(this.chosenFilters, 'neww')
+      }
       this.getTopic()
     }
   },
   methods:{
     getRandomInt(max) {
       return Math.floor(Math.random() * max);
+    },
+    toggleFilters(){
+      this.filterOpen = !this.filterOpen
     },
     getTopic(){
       const cur = localStorage.getItem('currentType')
@@ -350,9 +385,15 @@ export default {
         this.reset = true
         setTimeout(() => {
           this.reset = false
+          this.loaded = true
         }, 300);
       }
-    }
+    },
+    updateFilters(filters){
+      this.chosenFilters = filters
+      this.getTopic()
+      localStorage.setItem("localFilters", filters)
+    },
   }
 }
 </script> 

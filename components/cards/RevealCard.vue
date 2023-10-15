@@ -6,20 +6,20 @@
             <h4 v-if="!gaOpen">How it Works:</h4>
             <p v-if="!gaOpen">{{info.description}}</p>
             <div class="gameArea" v-else>
-                <div class="clue">
-                    <h4 :class="clue1?'subHeader hide' : 'subHeader clue1'" @click="clue1 = true">Clue 1:</h4>
-                    <span :class="clue1?'showOpt' : 'hide'">{{info.clue1}}</span> 
+                <div class="clue" @click="clue1 = true">
+                    <h4 :class="clue1?'subHeader hide' : 'subHeader clue1'" >Clue 1:</h4>
+                    <span :class="clue1?'showOpt' : 'hide'">Clue 1: {{info.clue1}}</span> 
                 </div>
-                <div class="clue">
-                    <h4 :class="clue2?'subHeader hide' : 'subHeader clue2'" @click="clue2 = true">Clue 2:</h4>
-                    <span :class="clue2?'showOpt' : 'hide'">{{info.clue2}}</span> 
+                <div class="clue" @click="clue2 = true">
+                    <h4 :class="clue2?'subHeader hide' : 'subHeader clue2'" >Clue 2:</h4>
+                    <span :class="clue2?'showOpt' : 'hide'">Clue 2: {{info.clue2}}</span> 
                 </div>
-                <div class="clue">
-                    <h4 :class="clue3?'subHeader hide' : 'subHeader clue3'" @click="clue3 = true">Clue 3:</h4>
-                    <span :class="clue3?'showOpt' : 'hide'">{{info.clue3}}</span> 
+                <div class="clue" @click="clue3 = true">
+                    <h4 :class="clue3?'subHeader hide' : 'subHeader clue3'" >Clue 3:</h4>
+                    <span :class="clue3?'showOpt' : 'hide'">Clue 3: {{info.clue3}}</span> 
                 </div>
-                <div class="clue">
-                    <h4 :class="answer?'subHeader hide' : 'subHeader answer'" @click="answer = true">Answer</h4>
+                <div class="clue" @click="answer = true">
+                    <h4 :class="answer?'subHeader hide' : 'subHeader answer'" >Answer</h4>
                     <span :class="answer?'answerOpt' : 'hide'">{{info.answer}}</span> 
                 </div>
             </div>
@@ -115,7 +115,8 @@ export default {
             font-size: 20px;
             margin-bottom: 16px;
             letter-spacing: 0.1px;
-            height: 54px;
+            height: 74px;
+            line-height: 1.3;
         }
         h4{
             font-size: 16px;
@@ -138,11 +139,11 @@ export default {
         }
         .gameArea{
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             flex-direction: column;
-            justify-content: center;
-            gap: 8px;
+            justify-content: flex-start;
             margin-bottom: 12px;
+            gap: 4px;
             .clue{
                 display: flex;
                 flex-direction: column;
@@ -150,31 +151,31 @@ export default {
                 z-index: 999;
             }
             .subHeader{
-                margin-bottom: 16px;
+                margin-bottom: 0px;
                 font-size: 20px;
                 transition: 1s;
             }
             .clue1{
                 border-radius: 100px;
-                padding: 10px 24px;
+                padding: 4px 12px;
                 background: #e31414;
                 color: #fff;
             }
             .clue2{
                 border-radius: 100px;
-                padding: 10px 24px;
+                padding: 4px 12px;
                 background: #d5ce13;
                 color: #fff;
             }
             .clue3{
                 border-radius: 100px;
-                padding: 10px 24px;
+                padding: 4px 12px;
                 background: #14e0e3;
                 color: #fff;
             }
             .answer{
                 border-radius: 100px;
-                padding: 10px 24px;
+                padding: 4px 12px;
                 background: #14e31b;
                 color: #fff;
             }

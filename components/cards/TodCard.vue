@@ -6,13 +6,13 @@
             <h4 v-if="!gaOpen">How it Works:</h4>
             <p v-if="!gaOpen">{{info.description}}</p>
             <div class="gameArea" v-else>
-                <div class="option">
-                    <h4 :class="showTruth?'subHeader hide' : 'subHeader truthHead'" @click="showTruth = true">Truth</h4>
+                <div class="option" @click="showTruth = true">
+                    <h4 :class="showTruth?'subHeader hide' : 'subHeader truthHead'" >Truth</h4>
                     <span :class="showTruth?'showOpt' : 'hide'">{{info.truth}}</span> 
                 </div>
                 <h3>OR</h3>
-                <div class="option">
-                    <h4 :class="showDare?'subHeader hide' : 'subHeader dareHead'" @click="showDare = true">Dare</h4>
+                <div class="option" @click="showDare = true">
+                    <h4 :class="showDare?'subHeader hide' : 'subHeader dareHead'" >Dare</h4>
                     <span :class="showDare?'showOpt' : 'hide'">{{info.dare}}</span> 
                 </div>
             </div>
@@ -130,10 +130,9 @@ export default {
             align-items: center;
             flex-direction: column;
             justify-content: center;
-            gap: 8px;
+            gap: 16px;
             margin-bottom: 12px;
             .option{
-                height: 50px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -141,10 +140,8 @@ export default {
             }
             h3{
                 margin: 0px;
-                margin-bottom: 16px;
             }
             .subHeader{
-                margin-bottom: 16px;
                 font-size: 20px;
                 transition: 1s;
             }
@@ -159,8 +156,6 @@ export default {
                 padding: 10px 24px;
                 background: #e31414;
                 color: #fff;
-                pointer-events: all;
-                height: fit-content;
             }
             .hide{
                 position: absolute;
