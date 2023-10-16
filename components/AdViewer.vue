@@ -20,7 +20,7 @@
         </ul>
         <div class="buttons">
           <NuxtLink :to="'/signup'">Go Unlimited</NuxtLink>
-          <span @click="handleClose" :class="canContinue? 'active' : ''">Continue Chatting</span>
+          <span @click="handleClose" :class="canContinue? 'active countdown' : 'countdown'">Continue Chatting <p v-if="!canContinue">({{countdown}})</p></span>
         </div>
       </div>
     </div>
@@ -32,6 +32,7 @@
     data() {
       return {
         canContinue: true,
+        countdown: 5
       }
     },
     props: {
@@ -47,11 +48,18 @@
       window.addEventListener('keyup', this.handleEsc)
       console.log(this.$refs.modalContent)
     },
-    updated(){
-      if(!this.canContinue && this.open){
-        setTimeout(() => {
-          this.canContinue = true
-        }, 5000);
+    watch: {
+    open(newVal, oldVal) {
+      if(newVal && !this.canContinue){
+          let countdownInterval = setInterval(() => {
+            this.countdown = (this.countdown -= 1);
+          }, 1000);
+          setTimeout(() => {          
+            this.canContinue = true
+            clearInterval(countdownInterval);
+            this.countdown = 5
+          }, 5000);
+        }
       }
     },
     beforeDestroy() {
@@ -162,6 +170,13 @@
       span{
         opacity:0.4;
         pointer-events: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        width: 154px;
+        p{
+          margin: 0px;
+        }
       }
       .active{
         opacity:1;
