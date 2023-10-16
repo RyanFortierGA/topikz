@@ -11,14 +11,12 @@
         <Adsbygoogle />
       </div>
       <div class="info">
-        <h4>Go Unlimited for Less than one coffee a month!</h4>
+        <h4>Go Unlimited for Less than 1 coffee/month!</h4>
         <ul>
           <li>No ADs</li>
-          <li>28+ Topik types</li>
+          <li>28+ Topik types & Over 600 prompts</li>
           <li>Filter by the Types you want to play</li>
-          <li>Over 600 prompts and counting</li>
           <li>Keep a scorecard for you and your friends</li>
-          <li>More Types and content added often</li>
         </ul>
         <div class="buttons">
           <NuxtLink :to="'/signup'">Go Unlimited</NuxtLink>
@@ -130,7 +128,7 @@
     max-width: 100%;
     min-height: 160px;
     max-height: 160px;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
   .info{
     display: flex;
