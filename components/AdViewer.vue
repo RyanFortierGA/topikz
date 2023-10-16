@@ -3,7 +3,7 @@
     ref='modalAd'
     :class="open ? 'modal openModal' : 'modal' "
   >
-    <div id='modalContentAd' class='modalContent'>
+    <div id='modalContentAd' ref="modalContent" class='modalContent'>
       <div class="adWrap">
         <Adsbygoogle />
       </div>
@@ -47,6 +47,7 @@
     },
     mounted() {
       window.addEventListener('keyup', this.handleEsc)
+      console.log(this.$refs.modalContent)
     },
     updated(){
       if(!this.canContinue && this.open){
@@ -80,7 +81,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
