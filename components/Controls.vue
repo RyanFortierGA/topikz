@@ -2,7 +2,7 @@
 <div class="controls">
   <span @click="openFilters"><Icon name="ic:baseline-filter-alt" /></span>
   <span @click="rollNew"><Icon name="tabler:arrows-shuffle" /></span>
-  <span @click="openTools"><Icon name="mdi:scoreboard" /></span>
+  <span @click="openScore"><Icon name="mdi:scoreboard" /></span>
 </div>
 </template>
 
@@ -17,8 +17,8 @@ const rollNew = () =>{
 const openFilters = () =>{
   emit('openFilters')
 }
-const openTools = () =>{
-  emit('openTools')
+const openScore = () =>{
+  emit('openScore')
 }
 </script>
 <style lang="scss" scoped>

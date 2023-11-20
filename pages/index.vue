@@ -85,7 +85,7 @@
     <transition name="flip">
       <WhoCard class="cardWrap" v-if="currentCard.type === 'whoGame'" :info="currentCard" :reset="reset"/>
     </transition>
-    <Controls v-if="currentCard.type" @rollNew="getTopic()" @openFilters="toggleFilters"/>
+    <Controls v-if="currentCard.type" @rollNew="getTopic()" @openFilters="toggleFilters" @openScore="scoreOpen = !scoreOpen"/>
     <svg class="loader" v-else version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
         <rect x="20" y="50" width="4" height="10" fill="#fff">
@@ -99,6 +99,7 @@
         </rect>
     </svg>
     
+    <Leaderboard v-if="loaded" :open='scoreOpen' @onClose='scoreOpen = !scoreOpen'/>
     <Filters v-if="loaded" :open='filterOpen' @onClose='toggleFilters' @updateFilters='updateFilters' :chosenFilters="chosenFilters" :cardInfo="cardInfo"/>
     <AdViewer v-if="loaded" :open='adOpen' @onClose='adReset'/>
   </div>
@@ -112,6 +113,7 @@ import TodCard from '../components/cards/TodCard.vue';
 import RevealCard from '../components/cards/RevealCard.vue';
 import WhoCard from '../components/cards/WhoCard.vue';
 import Filters from '../components/Filters.vue';
+import Leaderboard from '../components/Leaderboard.vue';
 
 export default {
   setup() {
@@ -144,7 +146,7 @@ export default {
     const { data: cards } = useSanityQuery(getCards)
     return { cards }
   },
-  components:{Controls, DefaultCard, DraftCard, AnswerCard, TodCard, RevealCard, WhoCard, Filters},
+  components:{Controls, DefaultCard, DraftCard, AnswerCard, TodCard, RevealCard, WhoCard, Filters, Leaderboard},
 
   data() {
     return{
@@ -161,6 +163,7 @@ export default {
       loaded: false,
       filterOpen: false,
       adOpen: false,
+      scoreOpen: false,
       cardInfo: {
         casualConvo:{
           label: 'Casual Conversation',
@@ -243,103 +246,120 @@ export default {
           label: 'Trivia Challenge',
           description: "You are going against eachother head to head...",
           details: 'details',
-          icon: 'material-symbols:contact-support'
+          icon: 'material-symbols:contact-support',
+          hex: '#c14a65'
         },
         ovoComp:{
           label: 'One Vs. One',
           description: "You are going against eachother head to head...",
           details: 'details',
-          icon: 'icon-park-outline:switch'
+          icon: 'icon-park-outline:switch',
+          hex: '#d750ac'
         },
         fivesecComp:{
           label: '5 seconds or Less',
           description: "You are going against eachother head to head...",
           details: 'details',
-          icon: 'material-symbols:timer-outline'  
+          icon: 'material-symbols:timer-outline',
+          hex: '#5041ae'  
         },
         ftlComp:{
           label: 'Find the Link',
           description: "You are going against eachother head to head...",
           details: 'details',
-          icon: 'material-symbols:add-link-rounded'  
+          icon: 'material-symbols:add-link-rounded',
+          hex: '#c65804' 
         },
         foundedComp:{
           label: 'Founded',
           description: "You are going against eachother head to head...",
           details: 'details',
-          icon: 'bi:building-fill-check'  
+          icon: 'bi:building-fill-check',
+          hex: '#797936'  
         },
         celebComp:{
           label: 'Guess the Age',
           description: "You are going against eachother head to head...",
           details: 'details',
-          icon: 'ic:outline-person-search' 
+          icon: 'ic:outline-person-search',
+          hex: '#482203' 
         },
         mlComp:{
           label: 'Music Numbers',
           description: "You are going against eachother head to head...",
           details: 'details',
-          icon: 'material-symbols:queue-music-rounded' 
+          icon: 'material-symbols:queue-music-rounded',
+          hex: '#8fd7af' 
         },
         castComp:{
           label: 'Casted',
           description: "You are going against eachother head to head...",
           details: 'details',
-          icon: 'icon-park-solid:peoples-two' 
+          icon: 'icon-park-solid:peoples-two',
+          hex: '#283b6c' 
         },
         songComp:{
           label: 'Name the Song',
           description: "You are going against eachother head to head...",
           details: 'details',
-          icon: 'iconamoon:music-album-fill' 
+          icon: 'iconamoon:music-album-fill',
+          hex: '#39044b' 
         },
         revealComp:{
           label: 'Reveal',
           description: "You are going against eachother head to head...",
           details: 'details',
-          icon: 'mdi:eye-check' 
+          icon: 'mdi:eye-check',
+          hex: '#59369f' 
         },
         draftGame:{
           label: 'Draft War',
           description: "War has begun, and the only way to settle this is by assembling a team of 5 that best fits the prompt.",
           details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.',
-          icon: 'mdi:sword-cross'
+          icon: 'mdi:sword-cross',
+          hex: '#9f6f09'
         },
         dykGame:{
           label: 'Do you know me',
           description: "Do you know eachother?",
           details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.',
-          icon: 'fluent-emoji-high-contrast:people-hugging'
+          icon: 'fluent-emoji-high-contrast:people-hugging',
+          hex: '#3d2e4a'
         },
         syncedGame:{
           label: 'Synced',
           description: "Are yall on the same mindset? if not, yall need to be for this one.",
           details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.',
-          icon: 'material-symbols:sync-rounded'
+          icon: 'material-symbols:sync-rounded',
+          hex: '#ce3e6c'
         },
         whoGame:{
           label: 'Who Am I',
           description: "Are yall on the same mindset? if not, yall need to be for this one.",
           details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.',
-          icon: 'tabler:user-question'
+          icon: 'tabler:user-question',
+          hex: '#f4e544'
         },
         likelyGroups:{
           label: 'Who is most likely',
           description: "Are yall on the same mindset? if not, yall need to be for this one.",
           details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.',
-          icon: 'ion:ios-people'
+          icon: 'ion:ios-people',
+          hex: '#caff80'
         },
         simplifyGroups:{
           label: 'Simplify It',
           description: "Are yall on the same mindset? if not, yall need to be for this one.",
           details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.',
-          icon: 'fluent:data-funnel-20-filled'
+          icon: 'fluent:data-funnel-20-filled',
+          hex: '#3e2e33'
         },
         splitGroups:{
           label: 'Split the Room',
           description: "Are yall on the same mindset? if not, yall need to be for this one.",
           details: 'Take turns going back and forth and adding a selection to your team. Once a choice has been made, the other team can not draft that option as they are now off the table. After finishing you decide who has won the war.',
-          icon: 'material-symbols:call-split'
+          icon: 'material-symbols:call-split',
+          hex: '#85a45a'
         },
       }
     }

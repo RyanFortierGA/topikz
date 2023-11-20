@@ -13,8 +13,8 @@
       <div class="info">
         <h4>Go Unlimited for Less than 1 coffee/month!</h4>
         <ul>
-          <li>No ADs</li>
-          <li>28+ Topik types & Over 600 prompts</li>
+          <li>No ADs, Just conversation</li>
+          <li>28+ Topik types & Growing prompts library</li>
           <li>Filter by the Types you want to play</li>
           <li>Keep a scorecard for you and your friends</li>
         </ul>

@@ -17,9 +17,9 @@
                 </div>
                 <div class="filterList">
                     <div v-for="(filter, i) in filterWrap.filters" :key="i" :class="['filter', currentFilters.includes(filter)?'activeFilter' : '']" @click="toggleFilter(filter)">
-                        <span :style="'color:' +cardInfo[filter].hex">{{cardInfo[filter].label}}</span>
-                        <span class="toggleBox checked" v-if="currentFilters.includes(filter)"><Icon name="mdi:checkbox-marked" /></span>
-                        <span class="toggleBox" v-else><Icon name="ion:android-checkbox-outline-blank" /></span>
+                        <span >{{cardInfo[filter].label}}</span>
+                        <span :style="'color:' +cardInfo[filter].hex" class="toggleBox checked" v-if="currentFilters.includes(filter)"><Icon name="mdi:checkbox-marked" /></span>
+                        <span :style="'color:' +cardInfo[filter].hex" class="toggleBox" v-else><Icon name="ion:android-checkbox-outline-blank" /></span>
                     </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@
         font-size: 24px;
         line-height: 24px;
         z-index: 99999;
-        pointer-events: all;
+        pointer-events: none;
       }
     }
   }
@@ -176,6 +176,11 @@
   .openModal {
     opacity: 1;
     pointer-events: all;
+    .modalContent{
+      .close{
+        pointer-events: all;
+      }
+    }
   }
 
   .filters{
