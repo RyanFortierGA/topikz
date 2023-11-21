@@ -24,9 +24,10 @@
                 </div>
             </div>
       </div>
-      <div class="actions">
-          <span class="cancel" @click="handleClose">Cancel</span>
-          <span class="save" @click="handleSave">Save</span>
+      <div :class=" unlimitedUser? 'actions' : 'freeActions actions'">
+          <span class="cancel" @click="handleClose">{{unlimitedUser?'Cancel' : 'Return to free version'}}</span>
+          <span v-if="unlimitedUser" class="save" @click="handleSave">Save</span>
+          <span v-else class="unlimited" @click="handleSave"><NuxtLink to="/signup">Play any & all you you want for $1.99!</NuxtLink></span>
       </div>
     </div>
   </div>
@@ -125,6 +126,11 @@
         }
       }
     },
+    computed: {
+      unlimitedUser() {
+        return this.$route.path.includes('member');
+      }
+    }
   }
 </script>
 
@@ -283,17 +289,30 @@
       gap: 12px;
       margin-top: 24px;
       .save{
-            border-radius: 100px;
-            padding: 10px 24px;
-            background: #79d41f;
-            color: #fff;
+          border-radius: 100px;
+          padding: 10px 24px;
+          background: #E36414;
+          color: #fff;
         }
-        .cancel{
-            border-radius: 100px;
-            padding: 10px 24px;
-            background: #828182;
-            color: #fff;
+      .cancel{
+        border-radius: 100px;
+        padding: 10px 24px;
+        background: #828182;
+        color: #fff;
+      }
+      .unlimited{
+        border-radius: 100px;
+        padding: 10px 24px;
+        background: #E36414;
+        a{
+          color: #fff;
+          text-decoration: none;
+          white-space: pre;
         }
+      }
+  }
+  .freeActions{
+    flex-direction: column-reverse;
   }
 
 

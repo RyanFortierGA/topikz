@@ -151,7 +151,7 @@
     }
     ul{
       padding: 0px;
-      color: #14e31b;
+      color: #E36414;
       margin: 0px;
     }
     .buttons{
@@ -162,7 +162,7 @@
       a{
         border-radius: 100px;
         padding: 4px 12px;
-        background: #14e31b;
+        background: #E36414;
         color: #fff;
         text-decoration: none;
         font-size: 20px;

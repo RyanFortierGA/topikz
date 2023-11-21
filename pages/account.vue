@@ -1,8 +1,8 @@
 <template>
   <div class="accountPage">
-    <img src="~/assets/images/account_img.png"/>
+    <!-- <img src="~/assets/images/account_img.png"/> -->
     <h1>Hello There <Icon name="ph:smiley-bold" /></h1>
-    <p>Thanks for making an account and joining the Topic family</p>
+    <p>Thanks for making an account and joining the Topikz family</p>
     <div v-if="emailExists === false" class="subBtn" @click="handleCheckoutButtonClick">
       <stripe-buy-button
           class="inactive"
@@ -11,8 +11,15 @@
         >
       </stripe-buy-button>
     </div>
-    <p>You are just one step away from unlimited topics with no ads, for less than a coffee in 2023. You can cancel anytime, but while you are subscribed, you will be able to play any type of topic, any amount of times and enjoy a seemless ad free experience.</p>
-    <Button icon="pi pi-check" label="Sign out" @click="signOut" />
+    <h4>Go Unlimited and get:</h4>
+    <ul>
+      <li>No more ADs, Just conversation</li>
+      <li>28+ Topik types with many more to come</li>
+      <li>Filter by the Types you want to play</li>
+      <li>Keep a Leaderboard for you and your friends</li>
+      <li>A growing library of prompts and games</li>
+    </ul>
+    <Button class="signOut" label="Sign out" @click="signOut" />
     <div v-if="emailExists === null">
       <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
@@ -53,6 +60,8 @@ export default {
     };
   },
   async mounted() {
+    localStorage.setItem("userUid", this.user.uid)
+    this.user.uid = localStorage.getItem('userUid')
     //case 1 if signup just happened and its new user, make a stripe account for them and let them create subscription
     if(this.$route.query.new === 'true'){
       const _this = this
@@ -69,7 +78,6 @@ export default {
           console.error('Error creating customer:', err);
         } else {
           localStorage.setItem("stripeId", customer.id)
-        
           _this.writeToFirestore(customer.id)
           _this.emailExists = false
         }
@@ -85,6 +93,7 @@ export default {
         //case 2 sub 1 if they login and they already have a stripe id in firebase, check if their subscription is currently active
         //firebase check
           const firebase2  = constructFB(this.$config)
+ 
           const query = firebase2.store.collection("users").where("fId", "==", this.user.uid);
           const _this = this
           query.get().then((querySnapshot) => {
@@ -285,21 +294,49 @@ export default {
       z-index: 999;
       font-size: 42px;
       font-family: Nunito-bold;
+      color: #fff;
+    }
+    h4{
+      margin-bottom: 24px;
+      font-size: 20px;
+      text-align: center;
+      margin-top: 24px;
+      color: #fff;
+    }
+    ul{
+      padding: 0px;
+      color: #E36414;
+      margin: 0px;
+      margin-left: 18px;
+      font-size: 18px;
+      font-weight: bold;
+      li{
+        margin-bottom: 4px;
+      }
+    }
+    .signOut{
+      background: #E36414;
+      border: none;
+      margin: auto;
+      margin-top: 20px;
+      display: block;
     }
     p{
       position: relative;
       z-index: 999;
       font-size: 22px;
       text-align: center;
+      color: #fff;
     }
     img{
       top: 66px;
       left: -18px;
       position: absolute;
       object-fit: cover;
+      object-position: top center;
       width: calc(100% + 18px);
       opacity: 0.2;
-      height: 100vh;
+      height: calc(100vh);
     }
   }
   .subBtn{

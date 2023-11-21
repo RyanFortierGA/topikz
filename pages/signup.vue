@@ -11,7 +11,6 @@
                 type="email"
                 label="E-mail"
                 placeholder="Your email address"
-                success-message="Got it, we won't spam you!"
               />
               <TextInput
                 name="password"
@@ -100,7 +99,7 @@ function onInvalidSubmit() {
   }
 }
 .submit-btn {
-  background: var(--primary-color);
+  background: #E36414;
   outline: none;
   border: none;
   color: #fff;

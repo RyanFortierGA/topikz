@@ -63,6 +63,7 @@
     text-align: right;
     width: 30%;
     color: #fff;
+    white-space: pre;
   }
   .leaderboard__buttons {
     display: flex;

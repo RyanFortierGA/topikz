@@ -4,7 +4,7 @@
     <div class="formWrapper">
       <NuxtLink to="/member"><Icon name="ic:twotone-arrow-back" />Back to the fun</NuxtLink>
       <h1>Account Management</h1>
-      <span>Contact Us: <a href="mailto:contact@dinnertopic.com">contact@dinnertopic.com</a></span>
+      <span><a href="mailto:contact@dinnertopic.com">contact@topikz.com</a></span>
       <div class="buttons">
          <span @click="signOut">Sign Out</span>
         <span class="cancel" @click="cancelOpen = !cancelOpen">Cancel Subscription</span>
@@ -129,14 +129,14 @@ export default {
   display: flex;
   align-items: center;
   img{
-     top: 66px;
-     left: -18px;
-     position: absolute;
-     object-fit: cover;
-     object-position: top center;
-     width: calc(100% + 18px);
-     opacity: 0.2;
-     height: calc(100vh - 116px);
+    top: 66px;
+    left: -18px;
+    position: absolute;
+    object-fit: cover;
+    object-position: top center;
+    width: calc(100% + 18px);
+    opacity: 0.2;
+    height: calc(100vh);
   }
   .buttons{
     display: flex;
@@ -166,6 +166,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #fff;
   h1{
     text-align: center;
     margin: 0px;

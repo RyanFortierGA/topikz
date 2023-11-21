@@ -12,14 +12,12 @@
                 type="email"
                 label="Email"
                 placeholder="Email address"
-                success-message="Got it, we won't spam you!"
               />
               <TextInput
                 name="password"
                 type="password"
                 label="Password"
                 placeholder="Your password"
-                success-message="Nice and secure!"
               />
               <Button
                 :label="disabled ? 'Please wait...' : 'Sign in'"
@@ -37,7 +35,6 @@
                 type="email"
                 label="Email"
                 placeholder="Email address"
-                success-message="Got it, we won't spam you!"
               />
               <Button
                 :label="'Send Reset Email'"
@@ -134,7 +131,7 @@ function onInvalidSubmit() {
   }
 }
 .submit-btn {
-  background: var(--primary-color);
+  background: #E36414;
   outline: none;
   border: none;
   color: #fff;

@@ -1,7 +1,7 @@
 <template>
     <div
       ref='modal'
-      :class="open ? 'modal openModal' : 'modal' "
+      :class="[open ? 'modal openModal' : 'modal' ,unlimitedUser?'unlimitedUser' : 'freeUser']"
       @click='closeModal'
     >
       <div id='modalContent' class='modalContent' :style="'width:' + size + 'px'">
@@ -20,13 +20,14 @@
               @delete="deleteUser"
             />
           </transition-group>
-          <p class="message" v-else>Nothing to show</p>
+          <p class="message" v-else>Add a player to see Scores!</p>
         </div>
         <div class="addUser">
           <input type="text" v-model="newUserName" placeholder="New User">
           <span @click="addUser">Add User</span>
         </div>
-        <div class="actions">
+        <div :class=" unlimitedUser? 'actions' : 'freeActions actions'">
+            <span v-if="!unlimitedUser" class="unlimited" @click="handleSave"><NuxtLink to="/signup">Keep a running tally with unlimited!</NuxtLink></span>
             <span class="save" @click="handleClose">Close</span>
         </div>
       </div>
@@ -51,14 +52,23 @@
       data() {
         return {
           users: [
-            { "id": 1, "name": "Emma", "score": 0 },
-            { "id": 2, "name": "Noah", "score": 0 },
-            { "id": 3, "name": "James", "score": 0 },
-            { "id": 4, "name": "William", "score": 0 },
-            { "id": 5, "name": "Olivia", "score": 0 }
+            
           ],
           newUserName: ''
         };
+      },
+      mounted(){
+        if(localStorage.getItem('userScores')){
+          this.users = JSON.parse(localStorage.getItem('userScores'))
+        } else {
+          this.users = [
+            { "id": 1, "name": "James", "score": 87 },
+            { "id": 2, "name": "Emma", "score": 43 },
+            { "id": 3, "name": "Dylan", "score": 62 },
+            { "id": 4, "name": "Carter", "score": 13 },
+            { "id": 5, "name": "Olivia", "score": 102 }
+          ]
+        }
       },
       methods: {
         handleClose() {
@@ -79,9 +89,11 @@
           user.score += step;
           user.score = user.score < 0 ? 0 : user.score;
           this.users = [...this.users];
+          localStorage.setItem("userScores", JSON.stringify(this.users))
         },
         deleteUser(id){
           this.users = this.users.filter(user => user.id !== id);
+          localStorage.setItem("userScores", JSON.stringify(this.users))
         },
         addUser() {
           if (this.newUserName.trim() !== '') {
@@ -91,7 +103,9 @@
               score: 0
             };
             this.users.push(newUser);
+            console.log(this.users)
             this.newUserName = ''; // Clear the input field after adding the user
+            localStorage.setItem("userScores", JSON.stringify(this.users))
           }
         }
       },
@@ -105,6 +119,9 @@
               : 1
           );
         },
+        unlimitedUser() {
+          return this.$route.path.includes('member');
+        }
       },
     }
   </script>
@@ -127,7 +144,7 @@
       overflow: scroll;
   
       .modalContent {
-        background: #000;
+        background: #222;
         /* margin: 24px; */
         padding: 40px 40px 40px 40px;
         width: 100%;
@@ -180,6 +197,7 @@
     }
     .message {
       text-align: center;
+      color: #fff;
     }
     .addUser{
       margin-top: 18px;
@@ -204,6 +222,16 @@
         white-space: pre;
       }
     }
+    .freeUser{
+      .leaderboard{
+        pointer-events: none;
+        opacity: 0.7;
+      }
+      .addUser{
+        pointer-events: none;
+        opacity: 0.7;
+      }
+    }
     .actions{
         display: flex;
         align-items: center;
@@ -223,6 +251,19 @@
               background: #828182;
               color: #fff;
           }
+          .unlimited{
+            border-radius: 100px;
+            padding: 10px 24px;
+            background: #E36414;
+            a{
+              color: #fff;
+              text-decoration: none;
+              white-space: pre;
+            }
+          }
+    }
+    .freeActions{
+      flex-direction: column;
     }
   
   
