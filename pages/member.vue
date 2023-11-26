@@ -158,7 +158,7 @@ export default {
       'ovoComp', 'fivesecComp', 'ftlComp', 'triviaComp' ,'foundedComp', 'celebComp', 'mlComp', 'castComp', 'songComp', 'revealComp',
       'dykGame', 'syncedGame', 'whoGame', 'draftGame',
       'likelyGroups', 'simplifyGroups', 'splitGroups',],
-      currentCard: {},
+      currentCard: {type: 'loading'},
       reset: false,
       loaded: false,
       filterOpen: false,
@@ -369,13 +369,17 @@ export default {
     if(this.cards){
       if(localStorage.getItem('localFilters')){
         this.chosenFilters = localStorage.getItem('localFilters').split(",");
-        console.log(this.chosenFilters, 'neww')
       }
       if(localStorage.getItem('freeCount') >= 10){
         localStorage.setItem('freeCount', 9)
       }
       this.getTopic()
     }
+    setTimeout(() => {
+      if(this.currentCard.type = 'loading'){
+        this.getTopic()
+      }
+    }, 500);
   },
   methods:{
     getRandomInt(max) {

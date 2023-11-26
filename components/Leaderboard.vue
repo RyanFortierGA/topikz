@@ -23,7 +23,7 @@
           <p class="message" v-else>Add a player to see Scores!</p>
         </div>
         <div class="addUser">
-          <input type="text" v-model="newUserName" placeholder="New User">
+          <input type="text" v-model="newUserName" placeholder="New User" maxlength="5">
           <span @click="addUser">Add User</span>
         </div>
         <div :class=" unlimitedUser? 'actions' : 'freeActions actions'">
@@ -103,7 +103,6 @@
               score: 0
             };
             this.users.push(newUser);
-            console.log(this.users)
             this.newUserName = ''; // Clear the input field after adding the user
             localStorage.setItem("userScores", JSON.stringify(this.users))
           }
@@ -189,7 +188,6 @@
       box-shadow: 1px 1px 10px #777;
       font-family: Arial, Helvetica, sans-serif;
       list-style: none;
-      margin: 5rem auto 0;
       padding: 2rem;
     }
     .leaderboard__item--move {

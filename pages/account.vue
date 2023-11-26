@@ -5,14 +5,13 @@
     <p>Thanks for making an account and joining the Topikz family</p>
     <div v-if="emailExists === false" class="subBtn" @click="handleCheckoutButtonClick">
       <stripe-buy-button
-          class="inactive"
-          buy-button-id="buy_btn_1Nm0DyI7NwPvbVzKVksVOKOY"
-          publishable-key="pk_test_51LPW9AI7NwPvbVzKslzCBfSA7LOARKwt6ArTJMO1IsV8Md0SxbY9WAojEwLJA9MmIHgrXFKZ7YQdHnVb9yuYkTZJ00ozcvPfGh"
-        >
+        buy-button-id="buy_btn_1OGoxGI7NwPvbVzKnITvo8IT"
+        publishable-key="pk_live_51LPW9AI7NwPvbVzKAEYNw9T1ArvdfcxBjXl2d43sYpw0VAkCq1eaQtNwZDD9mJw2q2m87uopxuY7EJeQuzyam3s800Uv9XuURw"
+      >
       </stripe-buy-button>
     </div>
-    <h4>Go Unlimited and get:</h4>
-    <ul>
+    <h4 v-if="!linking || emailExists === false">Go Unlimited and get:</h4>
+    <ul v-if="!linking || emailExists === false">
       <li>No more ADs, Just conversation</li>
       <li>28+ Topik types with many more to come</li>
       <li>Filter by the Types you want to play</li>
@@ -20,7 +19,46 @@
       <li>A growing library of prompts and games</li>
     </ul>
     <Button class="signOut" label="Sign out" @click="signOut" />
-    <div v-if="emailExists === null">
+    <p v-if="linking && emailExists === true" class="linker">
+      <svg version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+      <path fill="#fff" d="M31.6,3.5C5.9,13.6-6.6,42.7,3.5,68.4c10.1,25.7,39.2,38.3,64.9,28.1l-3.1-7.9c-21.3,8.4-45.4-2-53.8-23.3
+        c-8.4-21.3,2-45.4,23.3-53.8L31.6,3.5z">
+            <animateTransform 
+              attributeName="transform" 
+              attributeType="XML" 
+              type="rotate"
+              dur="2s" 
+              from="0 50 50"
+              to="360 50 50" 
+              repeatCount="indefinite" />
+        </path>
+      <path fill="#fff" d="M42.3,39.6c5.7-4.3,13.9-3.1,18.1,2.7c4.3,5.7,3.1,13.9-2.7,18.1l4.1,5.5c8.8-6.5,10.6-19,4.1-27.7
+        c-6.5-8.8-19-10.6-27.7-4.1L42.3,39.6z">
+            <animateTransform 
+              attributeName="transform" 
+              attributeType="XML" 
+              type="rotate"
+              dur="1s" 
+              from="0 50 50"
+              to="-360 50 50" 
+              repeatCount="indefinite" />
+        </path>
+      <path fill="#fff" d="M82,35.7C74.1,18,53.4,10.1,35.7,18S10.1,46.6,18,64.3l7.6-3.4c-6-13.5,0-29.3,13.5-35.3s29.3,0,35.3,13.5
+        L82,35.7z">
+            <animateTransform 
+              attributeName="transform" 
+              attributeType="XML" 
+              type="rotate"
+              dur="2s" 
+              from="0 50 50"
+              to="360 50 50" 
+              repeatCount="indefinite" />
+        </path>
+      </svg>
+      Linking New Device, if this takes longer than 45 seconds try refreshing the page or logging out and back in.
+    </p>
+    <div v-if="emailExists === null" class="loader">
       <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
           <rect x="20" y="50" width="4" height="10" fill="#fff">
@@ -56,12 +94,23 @@ export default {
       emailToCheck: '',
       emailExists: null,
       user: useUser(),
-      firebaseData: null
+      firebaseData: null,
+      updated: false,
+      linking: false
     };
   },
   async mounted() {
-    localStorage.setItem("userUid", this.user.uid)
-    this.user.uid = localStorage.getItem('userUid')
+    setTimeout(() => {
+      this.updated = true
+    }, 10000);
+    if(this.user && this.user.email) {
+      localStorage.setItem("localUser", this.user.email)
+      localStorage.setItem("userUid", this.user.uid)
+    } else if(this.$route.query.purchaseComplete === 'true'){
+      localStorage.setItem("stripeId", this.$route.query.id)
+      localStorage.setItem("localUser", this.$route.query.email)
+      this.user.uid = localStorage.getItem('userUid')
+    }
     //case 1 if signup just happened and its new user, make a stripe account for them and let them create subscription
     if(this.$route.query.new === 'true'){
       const _this = this
@@ -90,6 +139,7 @@ export default {
         _this.emailExists = await _this.hasActiveSubscriptions(localStorage.getItem('stripeId'));
       }//end of main and start of main else
       else{ 
+        this.linking = true
         //case 2 sub 1 if they login and they already have a stripe id in firebase, check if their subscription is currently active
         //firebase check
           const firebase2  = constructFB(this.$config)
@@ -114,7 +164,7 @@ export default {
 
         setTimeout( async() => {
           if(this.firebaseData && this.firebaseData.stripeId){
-            console.log(this.firebaseData.stripeId)
+            localStorage.setItem("stripeId", this.firebaseData.stripeId)
             _this.emailExists = await _this.hasActiveSubscriptions(this.firebaseData.stripeId);
           }else{
             const _this = this
@@ -241,15 +291,15 @@ export default {
           payment_method_types: ['card'], // Adjust to your preferred payment methods
           line_items: [
             {
-              price: 'price_1NkrdPI7NwPvbVzKfl0T0mIW', // Replace with your actual price ID
+              price: 'price_1OGou8I7NwPvbVzKU6Kei1Sz', // Replace with your actual price ID
               quantity: 1,
             },
           ],
           mode: 'subscription',
-          success_url: window.location.origin + '/account',
+          success_url: window.location.origin + '/account?purchaseComplete=true?email=' + localStorage.getItem('localUser') + '?id=' + localStorage.getItem('stripeId'),
           cancel_url: window.location.origin + '/account',
         });
-
+        console.log(session.url, 'ss')
         // Redirect the user to the Checkout page
         window.location.href = session.url;
       } catch (error) {
@@ -261,8 +311,7 @@ export default {
         await this.$nuxt.$firebaseAuth.signOut()
       }
       localStorage.removeItem('localUser')
-      localStorage.removeItem('stripeId')
-
+      //dont remove stripe id
       this.$router.push('/')
     },
     async writeToFirestore(id){
@@ -271,6 +320,11 @@ export default {
           stripeId: id,
           fId: this.user.uid
         });
+    },
+    handleRouteChange(){
+      if(this.$route.query.purchaseComplete === 'true'){
+        this.$router.push('/member')
+      }
     }
   },
   watch: {
@@ -279,6 +333,9 @@ export default {
         this.$router.push('/member')
       }
     },
+    '$route'() {
+      this.handleRouteChange();
+    }
   },
 };
 </script>
@@ -348,6 +405,17 @@ export default {
     margin: auto;
     .inactive{
       pointer-events: none;
+    }
+  }
+  .linker, .loader{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    svg{
+      width: 32px;
+      height: 32px;
     }
   }
 </style>

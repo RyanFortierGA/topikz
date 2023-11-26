@@ -40,8 +40,9 @@ export default {
         await this.$nuxt.$firebaseAuth.signOut()
       }
       localStorage.removeItem('localUser')
-      localStorage.removeItem('stripeId')
-      this.$router.push('/')
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 300);
     },
     async getCustomerSubscriptions(customerId) {
       try {
@@ -104,14 +105,17 @@ export default {
         // Handle errors
         console.error('Error cancelling subscription:', error);
       }
+      this.signOut()
     },
     async deleteAccount(){
       if (this.user) {
-        await this.$nuxt.$firebaseAuth.delete()
-        this.cancelCustomerSubscription()
-        localStorage.removeItem('localUser')
-        this.$router.push('/')
-      }else{
+        const user = this.$nuxt.$firebaseAuth.currentUser;
+          user.delete().then(() => {
+            this.cancelCustomerSubscription()
+          }).catch((error) => {
+            this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact@dinnertopic.com for help'
+          });
+      } else {
         this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact@dinnertopic.com for help'
       }
     } 
@@ -171,6 +175,7 @@ export default {
     text-align: center;
     margin: 0px;
     margin-bottom: 24px;
+    color: #000;
   }
   span{
     display: flex;

@@ -4,8 +4,8 @@
             <h2>Are you sure you want to Cancel?</h2>
             <p>In doing so, after your current period ends, you will lose access to unlimited topikz, an ad free experience, filtering and your leaderboard.</p>
             <div class="buttons">
-                <span class="cancel" @click="toggleModal">No, Cancel</span>
-                <span class="success" @click="cancelSub">Yes, Continue</span>
+                <span class="cancel" @click="toggleModal">No, Go Back</span>
+                <span class="success" @click="cancelSub">Yes, Cancel</span>
             </div>
         </Modal>
     </div>

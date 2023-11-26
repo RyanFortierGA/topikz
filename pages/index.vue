@@ -158,7 +158,7 @@ export default {
       'ovoComp', 'fivesecComp', 'ftlComp', 'triviaComp' ,'foundedComp', 'celebComp', 'mlComp', 'castComp', 'songComp', 'revealComp',
       'dykGame', 'syncedGame', 'whoGame', 'draftGame',
       'likelyGroups', 'simplifyGroups', 'splitGroups',],
-      currentCard: {},
+      currentCard: {type:'casualConvo'},
       reset: false,
       loaded: false,
       filterOpen: false,
@@ -389,7 +389,6 @@ export default {
       if(!curCount){
         curCount = 0
       }
-      console.log(curCount)
       if(curCount >= 10){
         this.adOpen = true
       }else{

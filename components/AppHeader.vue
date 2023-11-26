@@ -19,11 +19,9 @@ export default {
             menuOpen: false,
             loginRoute: null,
             homeRoute: null,
-            user: null
         }
     },
     mounted(){
-        this.user = localStorage.localUser
         if(localStorage.localUser && localStorage.active !== 'false'){
             this.loginRoute = '/accountManagement'
             this.homeRoute = '/member'
@@ -33,19 +31,23 @@ export default {
         }
     },
     watch: {
-    user(value) {
-      if(value){
-        if(localStorage.localUser && localStorage.active !== 'false'){
-            this.loginRoute = '/accountManagement'
-            this.homeRoute = '/member'
-        } else{
-            this.loginRoute = '/login'
-            this.homeRoute = '/'
+        '$route'() {
+            this.handleRouteChange();
         }
-      }
     },
-  },
-    methods:{}
+    
+    methods: {
+        handleRouteChange() {
+            if(localStorage.localUser && localStorage.active !== 'false'){
+                this.loginRoute = '/accountManagement'
+                this.homeRoute = '/member'
+            } else{
+                this.loginRoute = '/login'
+                this.homeRoute = '/'
+            }
+        }
+  }
+
 }
 </script>
 <style lang="scss" scoped>

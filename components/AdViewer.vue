@@ -46,7 +46,6 @@
     },
     mounted() {
       window.addEventListener('keyup', this.handleEsc)
-      console.log(this.$refs.modalContent)
     },
     watch: {
     open(newVal, oldVal) {
