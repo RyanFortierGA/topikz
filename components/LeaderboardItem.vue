@@ -52,6 +52,7 @@
     margin: 0.5rem 0;
     padding: 0.25rem;
     max-width: 74vw;
+    touch-action: manipulation;
   }
   .leaderboard__user {
     text-align: left;

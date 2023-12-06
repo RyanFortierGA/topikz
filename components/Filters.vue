@@ -16,10 +16,10 @@
                     <span class="toggle" v-else><Icon  name="ic:baseline-plus" @click="toggleOpen(index)"  /></span>
                 </div>
                 <div class="filterList">
-                    <div v-for="(filter, i) in filterWrap.filters" :key="i" :class="['filter', currentFilters.includes(filter)?'activeFilter' : '']" @click="toggleFilter(filter)">
-                        <span >{{cardInfo[filter].label}}</span>
-                        <span :style="'color:' +cardInfo[filter].hex" class="toggleBox checked" v-if="currentFilters.includes(filter)"><Icon name="mdi:checkbox-marked" /></span>
-                        <span :style="'color:' +cardInfo[filter].hex" class="toggleBox" v-else><Icon name="ion:android-checkbox-outline-blank" /></span>
+                    <div v-for="(filter, i) in filterWrap.filters" :key="i" :class="['filter', currentFilters.includes(filter)?'activeFilter' : '']" >
+                        <span class="filterLabel">{{cardInfo[filter].label}}</span>
+                        <span :style="'color:' +cardInfo[filter].hex" class="toggleBox checked" v-if="currentFilters.includes(filter)" @click="toggleFilter(filter)"><Icon name="mdi:checkbox-marked" /></span>
+                        <span :style="'color:' +cardInfo[filter].hex" class="toggleBox" v-else @click="toggleFilter(filter)"><Icon name="ion:android-checkbox-outline-blank" /></span>
                     </div>
                 </div>
             </div>
@@ -49,6 +49,13 @@
       cardInfo:{
         type: Object,
       },
+    },
+    head() {
+      return {
+        meta: [
+          { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+        ]
+      }
     },
     data() {
     return {
@@ -139,7 +146,7 @@
     position: fixed;
     width: 100%;
     height: 100%;
-    top: 0;
+    top: 0vw;
     left: 0;
     background: rgba(0, 0, 0, 0.75);
     display: flex;
@@ -148,8 +155,7 @@
     opacity: 0;
     pointer-events: none;
     transition: 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
-    z-index: 10000;
-    overflow: scroll;
+    z-index: 10000000000;
 
     .modalContent {
       background: #ffffff;
@@ -182,6 +188,7 @@
   .openModal {
     opacity: 1;
     pointer-events: all;
+    overflow: hidden;
     .modalContent{
       .close{
         pointer-events: all;
@@ -190,11 +197,12 @@
   }
 
   .filters{
-    height: 60%;
+    height: 70%;
     overflow: scroll;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    touch-action: pan-y;
     &::-webkit-scrollbar {
         display: none;
     }
@@ -273,9 +281,9 @@
         }
     }
     .openBox .filterList{
-        height: 200px;
+        transition: 400ms;
+        height: fit-content;
         opacity: 1;
-        overflow-y: scroll;
         &::-webkit-scrollbar {
             display: none;
         }

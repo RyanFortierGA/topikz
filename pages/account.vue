@@ -341,7 +341,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .accountPage{
-    height: calc(100vh - 58px);
+    height: fit-content;
     h1{
       display: flex;
       align-items: center;

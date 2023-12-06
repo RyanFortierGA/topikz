@@ -189,6 +189,7 @@
       font-family: Arial, Helvetica, sans-serif;
       list-style: none;
       padding: 2rem;
+      touch-action: manipulation;
     }
     .leaderboard__item--move {
       transition: transform 0.2s;
@@ -202,6 +203,7 @@
       display: flex;
       align-items: center;
       gap: 18px;
+      touch-action: manipulation;
       input{
         border: 1px solid #E36414;
         background: #fff;
@@ -210,6 +212,7 @@
         height: 34px;
         border-radius: 8px;
         width: 100%;
+        touch-action: manipulation;
       }
       span{
         border-radius: 100px;

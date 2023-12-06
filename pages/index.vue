@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div :class="['home', filterOpen?'disableCards' :'']">
     <h1>Lets Talk...</h1>
     <transition name="flip">
       <DefaultCard class="cardWrap" v-if="currentCard.type === 'casualConvo'" :info="currentCard" :reset="reset"/>

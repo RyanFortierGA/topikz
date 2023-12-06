@@ -88,3 +88,9 @@
         /* transform: translateX(100px); */
       }
   }
+.disableCards{
+  .cardWrap{
+    display: none;
+    pointer-events: none;
+  }
+}
