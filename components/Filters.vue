@@ -197,7 +197,7 @@
   }
 
   .filters{
-    height: 70%;
+    height: 66%;
     overflow: scroll;
     display: flex;
     flex-direction: column;
