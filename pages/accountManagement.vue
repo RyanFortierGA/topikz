@@ -4,7 +4,7 @@
     <div class="formWrapper">
       <NuxtLink to="/member"><Icon name="ic:twotone-arrow-back" />Back to the fun</NuxtLink>
       <h1>Account Management</h1>
-      <span><a href="mailto:contact@dinnertopic.com">contact@topikz.com</a></span>
+      <span><a href="mailto:contact@topikz.com">contact@topikz.com</a></span>
       <div class="buttons">
          <span @click="signOut">Sign Out</span>
         <span class="cancel" @click="cancelOpen = !cancelOpen">Cancel Subscription</span>
@@ -66,8 +66,8 @@ export default {
 
       // Find the first active subscription, if any
       const activeSubscription = subscriptions.find(subscription => {
-        return subscription.status === 'active';
-      });
+        return subscription.status === 'active' || subscription.status === 'trialing';
+      })
 
       return activeSubscription;
     },
@@ -88,7 +88,7 @@ export default {
       } catch (error) {
         // Handle errors and notify the user
         alert('Error cancelling subscription. Please try again later.');
-          this.currentMessage = 'Cancelation failed, please logout and login to try again, if that still fails please reach out to contact@dinnertopic.com for help'
+          this.currentMessage = 'Cancelation failed, please logout and login to try again, if that still fails please reach out to contact@topikz.com for help'
       }
     },
     async cancelCustomerSubscription() {
@@ -99,7 +99,6 @@ export default {
         if (activeSubscription) {
           await this.cancelSubscription(activeSubscription.id);
         } else {
-          console.log('No active subscription found for this customer.');
         }
       } catch (error) {
         // Handle errors
@@ -113,16 +112,15 @@ export default {
           user.delete().then(() => {
             this.cancelCustomerSubscription()
           }).catch((error) => {
-            this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact@dinnertopic.com for help'
+            this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact@topikz.com for help'
           });
       } else {
-        this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact@dinnertopic.com for help'
+        this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact@topikz.com for help'
       }
     } 
   },
   mounted() {
-    // You can optionally call cancelCustomerSubscription here when the component is mounted.
-    // this.cancelCustomerSubscription();
+
   },
 };
 </script>

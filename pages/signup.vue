@@ -36,7 +36,7 @@
 <script lang="ts" setup>
 import { Form } from 'vee-validate'
 import '~/utils/vee-validate-rules'
-import { User } from '~/models/User'
+// import { User } from '~/models/User'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import TextInput from '~/components/TextInput.vue'
 
@@ -84,7 +84,7 @@ function onInvalidSubmit() {
   }, 1000)
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .signupPage{
   height: calc(100vh - 150px);
   img{

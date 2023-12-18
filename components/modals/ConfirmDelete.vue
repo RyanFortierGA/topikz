@@ -2,7 +2,7 @@
     <div>   
         <Modal :open='modalOpen' size='582' @onClose='toggleModal'>
             <h2>Are you sure you want to delete your account?</h2>
-            <p>In doing so, this will also cancel your unlimited subscription if you have one.</p>
+            <p>In doing so, this will also cancel your Pro subscription if you have one.</p>
             <div class="buttons">
                 <span class="cancel" @click="toggleModal">No, Cancel</span>
                 <span class="success" @click="deleteAccount">Yes, Continue</span>

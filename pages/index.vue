@@ -368,7 +368,6 @@ export default {
     if(this.cards){
       if(localStorage.getItem('localFilters')){
         this.chosenFilters = localStorage.getItem('localFilters').split(",");
-        console.log(this.chosenFilters, 'neww')
       }
       if(localStorage.getItem('freeCount') >= 10){
         localStorage.setItem('freeCount', 9)

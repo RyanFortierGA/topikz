@@ -23,7 +23,7 @@
             <h4 v-if="learnOpen">The Details:</h4>
             <p v-if="learnOpen">{{info.details}}</p>
             <span v-if="!learnOpen" @click="learnOpen = !learnOpen">Learn More <Icon name="mingcute:finger-press-fill" /></span>
-            <span class="selector" v-else @click="startFinal">{{gaOpen? 'REVEAL' : 'REVEAL'}}</span>
+            <span class="selector" v-else @click="learnOpen = !learnOpen">{{gaOpen? 'START' : 'START'}}</span>
         </div>
     </div>
 </template>

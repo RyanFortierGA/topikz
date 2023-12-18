@@ -2,10 +2,10 @@
     <nav class="navbar" >
         <NuxtLink :to="homeRoute">T<span>op</span>ikz</NuxtLink>
         <div class="icons">
-            <!-- <span @click="infoOpen = !infoOpen"><Icon name="material-symbols:help-outline" /></span> -->
+            <span @click="infoOpen = !infoOpen"><Icon name="material-symbols:help-outline" /></span>
             <NuxtLink :to="loginRoute"><Icon name="carbon:user-avatar-filled" /></NuxtLink>
         </div>
-        <!-- <Info :open='infoOpen' @onClose='infoOpen = !infoOpen'/> -->
+        <Info :open='infoOpen' @onClose='infoOpen = !infoOpen'/>
     </nav>
 </template>
 
@@ -50,7 +50,7 @@ export default {
                 this.homeRoute = '/'
             }
         }
-  }
+    }
 
 }
 </script>

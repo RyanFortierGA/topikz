@@ -11,7 +11,7 @@
   const router = useRouter()
   const route = useRoute()
 
-  const loginRoutes = ['/login', '/signup', 'accountManagement', '/']
+  const loginRoutes = ['/login', '/signup', 'accountManagement', '/', '/terms']
   const checkPath = () => {
     if(process.client) {
       //setting local

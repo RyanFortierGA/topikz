@@ -14,7 +14,9 @@
                   What is Topikz? <span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Answer to question 1...</p>
+                    <p>Topikz is whatever you want it to be! The goal behind Topikz was to create a stress free, low pressure conversation starter. Whether thats a small game of trivia, a conversation on traveling the world, or a dangerous round of truth or dare.
+                      We know we aren't the only place to go for a list of conversation topics on the internet, but we do believe we are the best at giving you such a large variety of talking points, easy games and fun conversation.
+                    </p>
                 </div>
             </div>
             <div class="accordion-item">
@@ -22,15 +24,18 @@
                   How do you play?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Answer to question 2...</p>
+                    <p>The short answer is, however you want to play! If you just want to use Topikz to start your nights first conversation, then its great for just that. Or if you like creating a variety in your conversation thoughout a lunch, there is nothing better. maybe
+                      you are like us and you like to also add a little game to your dinner date, we have so many fun unique games for you to keep it friendly but a bit competetive. PS. Don't forget to keep score with the leaderboard!
+                    </p>
                 </div>
             </div>
             <div class="accordion-item">
                 <button class="accordion-header">
-                  How do I only play certain topikz?<span class="icon">+</span>
+                  Can I only play certain topikz?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Answer to question 2...</p>
+                    <p>Absolutely! This is something we offer with our Pro subscription. You get a list of all the Topikz types and you are able to choose any/all the ones you want to play. If you only want to play "Hot takes" you can do that, maybe you only want Conversational topikz and no games, you have that power! 
+                      With the free version you can go now and look at a list of all the types to give you an idea of just how many ways you will have to play topikz with PRO!</p>
                 </div>
             </div>
             <div class="accordion-item">
@@ -38,7 +43,9 @@
                   How do i gamify Topikz?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Answer to question 2...</p>
+                    <p>Gamify it how you deem best fits your social circle. Maybe you all have a way to give points for conversation, i don't know how but maybe you do. Or maybe you are playing games like truth or dare and you create a wager system for points. There is also some pretty straight forward games like "Reveal", where the first person
+                      to guess the answer should probably be rewarded with a point... And hey, don't forget we give you a nice little leaderboard to keep track of all these points with PRO.
+                    </p>
                 </div>
             </div>
             <div class="accordion-item">
@@ -46,7 +53,9 @@
                   Is there more to come?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Answer to question 3...</p>
+                    <p>There is so much more to come! We have plans for many more games, lots more features to add to make games more fun, and tons of prompts! We are frequently adding in more prompts to create an ever growing library. So even if you have somehow got through all of say the "Would you rather's" one day, good chance that the next day there is a whole
+                      new list of them to play.
+                    </p>
                 </div>
             </div>
             <div class="accordion-item">
@@ -54,7 +63,7 @@
                   What inspired Topikz?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Answer to question 3...</p>
+                    <p>This is more of a question of who! Me and wife have over the years come to really like fun little games or conversation over dinner/lunch or just when we are hanging out. This is exactly what sparked the idea of Topikz! We thought, well we have made up a bunch of games, and theres a ton of great ones already out there... Why not put them all in one place?</p>
                 </div>
             </div>
             <div class="accordion-item">
@@ -62,7 +71,15 @@
                   I have an idea, how do i share it with the team?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Answer to question 2...</p>
+                    <p>WOOOO! We love new ideas and are so excited to hear about it. Please email us at contact@topikz.com with the subject "New idea"</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header">
+                  I have found a bug... how do i tell you about it?<span class="icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>uh oh... You are telling me this website is not absolutely perfect? We understand and are very grateful you want to share with us ways to improve. Please email us at contact@topikz.com with the subject along the lines of "bug: issue at hand"</p>
                 </div>
             </div>
           
@@ -155,6 +172,7 @@
         height: 100%;
         position: relative;
         /* border-radius: 16px; */
+        overflow: scroll;
         h3{
           font-size: 28px;
           text-align: center;

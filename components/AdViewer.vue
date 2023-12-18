@@ -11,7 +11,7 @@
         <Adsbygoogle />
       </div>
       <div class="info">
-        <h4>Go Unlimited for Less than 1 coffee/month!</h4>
+        <h4>Go Pro for Less than a dollar/month!</h4>
         <ul>
           <li>No ADs, Just conversation</li>
           <li>28+ Topik types & Growing prompts library</li>
@@ -19,7 +19,7 @@
           <li>Keep a scorecard for you and your friends</li>
         </ul>
         <div class="buttons">
-          <NuxtLink :to="'/signup'">Go Unlimited</NuxtLink>
+          <NuxtLink :to="'/signup'">Try pro today</NuxtLink>
           <span @click="handleClose" :class="canContinue? 'active countdown' : 'countdown'">Continue Chatting <p v-if="!canContinue">({{countdown}})</p></span>
         </div>
       </div>
@@ -32,7 +32,7 @@
     data() {
       return {
         canContinue: true,
-        countdown: 5
+        countdown: 10
       }
     },
     props: {
@@ -56,8 +56,8 @@
           setTimeout(() => {          
             this.canContinue = true
             clearInterval(countdownInterval);
-            this.countdown = 5
-          }, 5000);
+            this.countdown = 10
+          }, 10000);
         }
       }
     },
@@ -173,6 +173,7 @@
         align-items: center;
         gap: 4px;
         width: 154px;
+        white-space: pre;
         p{
           margin: 0px;
         }

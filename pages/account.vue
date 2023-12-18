@@ -262,9 +262,12 @@ export default {
         });
         // Check if any subscription is active
         const hasActiveSubscription = subscriptions.data.some(subscription => {
-          return subscription.status === 'active';
+          if(subscription.status === 'active' || subscription.status === 'trialing'){
+            return true;
+          }else{
+            return false;
+          }
         });
-        console.log(subscriptions, customerId)
         if(hasActiveSubscription){
           localStorage.setItem("active", 'true')
         }else{
@@ -303,7 +306,6 @@ export default {
           success_url: window.location.origin + '/account?purchaseComplete=true?email=' + localStorage.getItem('localUser') + '?id=' + localStorage.getItem('stripeId'),
           cancel_url: window.location.origin + '/account',
         });
-        console.log(session.url, 'ss')
         // Redirect the user to the Checkout page
         window.location.href = session.url;
       } catch (error) {

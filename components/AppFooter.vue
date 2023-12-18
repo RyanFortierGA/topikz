@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <NuxtLink to="/accountManagement">Account Management</NuxtLink>
+    <NuxtLink :to="amRoute">Account Management</NuxtLink>
     <div class="bar">.</div>
     <div class="bottom">
       <span>Copyright 2023</span>
@@ -16,11 +16,17 @@ export default {
   data() {
     return {
       stripeId: null,
-      isSubscribed: true
+      isSubscribed: true,
+      amRoute: null
     };
   },
   async mounted() {
     this.stripeId = localStorage.getItem('stripeId')
+    if(localStorage.localUser && localStorage.active !== 'false'){
+      this.amRoute = '/accountManagement'
+      } else{
+      this.amRoute = '/login'
+    }
   },
   watch: {
     stripeId(value) {
@@ -28,7 +34,19 @@ export default {
         this.isSubscribed = true
       }
     },
+    '$route'() {
+      this.handleRouteChange();
+    }
   },
+  methods: {
+        handleRouteChange() {
+          if(localStorage.localUser && localStorage.active !== 'false'){
+            this.amRoute = '/accountManagement'
+          } else{
+            this.amRoute = '/login'
+          }
+        }
+    }
 };
 </script>
 <style lang="scss" scoped>

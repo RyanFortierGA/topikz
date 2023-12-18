@@ -2,7 +2,7 @@
     <div>   
         <Modal :open='modalOpen' size='582' @onClose='toggleModal'>
             <h2>Are you sure you want to Cancel?</h2>
-            <p>In doing so, after your current period ends, you will lose access to unlimited topikz, an ad free experience, filtering and your leaderboard.</p>
+            <p>In doing so, after your current period ends, you will lose access to Pro w/ an ad free experience, filtering of any/all types and the ability to keep a leaderboard for you and your friends. If you continue, you will be signed out and need to sign back in to use your Pro membership for your remaining time.</p>
             <div class="buttons">
                 <span class="cancel" @click="toggleModal">No, Go Back</span>
                 <span class="success" @click="cancelSub">Yes, Cancel</span>

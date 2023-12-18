@@ -52,7 +52,7 @@
 <script lang="ts" setup>
 import { Form } from 'vee-validate'
 import '~/utils/vee-validate-rules'
-import { User } from '~/models/User'
+// import { User } from '~/models/User'
 import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence, sendPasswordResetEmail } from 'firebase/auth'
 import TextInput from '~/components/TextInput.vue'
 
