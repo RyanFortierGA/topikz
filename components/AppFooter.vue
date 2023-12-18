@@ -66,6 +66,9 @@ export default {
     bottom: 0;
     color: #fff;
     height: 84px;
+    position: relative;
+    z-index: 1000;
+    margin-top:24px;
     .bar{
       background: #fff;
       height: 1px;

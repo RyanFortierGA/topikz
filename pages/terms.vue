@@ -4,7 +4,7 @@
       <h1>Terms of Service and Privacy Policy</h1>
 
       <h2>Introduction</h2>
-      <p>Welcome to our website! By using our website, you agree to comply with and be bound by the following terms and conditions of use. Please review the following terms carefully. If you do not agree to these terms, you should not use this website.</p>
+      <p>Welcome to Topikz! By using Topikz.com, you agree to comply with and be bound by the following terms and conditions of use. Please review the following terms carefully. If you do not agree to these terms, you should not use this website.</p>
 
       <h2>Terms of Service</h2>
       <h3>Use of the Website</h3>

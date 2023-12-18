@@ -215,7 +215,7 @@ export default {
         },
         hardConvo:{
           label: 'Hard Hitting',
-          description: "If you love the ability to have a conversation over something that is often divisive, but do it in a civil manner. This topic is for you.",
+          description: "Not every topic is easy, but it is sometimes good to talk about them.",
           details: "If you love the ability to have a conversation over something that is often divisive, but do it in a civil manner. This topic is for you.",
           icon: 'material-symbols:hardware-rounded',
           hex: '#2a6a15'
