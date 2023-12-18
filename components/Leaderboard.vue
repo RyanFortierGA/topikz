@@ -27,7 +27,7 @@
           <span @click="addUser">Add User</span>
         </div>
         <div :class=" unlimitedUser? 'actions' : 'freeActions actions'">
-            <span v-if="!unlimitedUser" class="unlimited" @click="handleSave"><NuxtLink to="/signup">Keep a running tally with unlimited!</NuxtLink></span>
+            <span v-if="!unlimitedUser" class="unlimited" @click="handleSave"><NuxtLink to="/signup">Keep a running tally with Pro!</NuxtLink></span>
             <span class="save" @click="handleClose">Close</span>
         </div>
       </div>

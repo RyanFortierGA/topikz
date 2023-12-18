@@ -9,8 +9,9 @@ export default defineNuxtConfig({
         {
           hid: 'description',
           name: 'description',
-          content: 'Nuxt3 + Firebase Authentication Demo'
-        }
+          content: 'A stress free, low pressure conversation and game starter. With over 28 topik types, hundreds of prompts, and even more fun to be explored.'
+        },
+        { hid: 'og:image', property: 'og:image', content: '~/assets/images/topikz_logo.png' }
       ],
       link: [
         {
