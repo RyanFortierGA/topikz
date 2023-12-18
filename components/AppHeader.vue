@@ -2,23 +2,27 @@
     <nav class="navbar" >
         <NuxtLink :to="homeRoute">T<span>op</span>ikz</NuxtLink>
         <div class="icons">
-            <NuxtLink :to="homeRoute" ><Icon name="material-symbols:help-outline" /></NuxtLink>
+            <!-- <span @click="infoOpen = !infoOpen"><Icon name="material-symbols:help-outline" /></span> -->
             <NuxtLink :to="loginRoute"><Icon name="carbon:user-avatar-filled" /></NuxtLink>
         </div>
+        <!-- <Info :open='infoOpen' @onClose='infoOpen = !infoOpen'/> -->
     </nav>
 </template>
 
 <script>
+import Info from './Info.vue';
+
 export default {
+    components: {Info},
     name: 'Navbar',
     setup() {
         return {}
     },
     data() {
         return {
-            menuOpen: false,
             loginRoute: null,
             homeRoute: null,
+            infoOpen: false, 
         }
     },
     mounted(){
@@ -67,7 +71,7 @@ export default {
             height: 32px;
 
         }
-        a{
+        a, span{
             text-decoration: none;
             color: #fff;
             text-transform: uppercase;

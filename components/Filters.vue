@@ -27,7 +27,7 @@
       <div :class=" unlimitedUser? 'actions' : 'freeActions actions'">
           <span class="cancel" @click="handleClose">{{unlimitedUser?'Cancel' : 'Return to free version'}}</span>
           <span v-if="unlimitedUser" class="save" @click="handleSave">Save</span>
-          <span v-else class="unlimited" @click="handleSave"><NuxtLink to="/signup">Play any & all you you want for $1.99!</NuxtLink></span>
+          <span v-else class="unlimited" @click="handleSave"><NuxtLink to="/signup">Play any & all you you want for $0.99!</NuxtLink></span>
       </div>
     </div>
   </div>
@@ -158,7 +158,8 @@
     z-index: 10000000000;
 
     .modalContent {
-      background: #ffffff;
+      background: #222;
+      color: #fff;
       /* margin: 24px; */
       padding: 40px 40px 40px 40px;
       width: 100%;
@@ -247,7 +248,7 @@
                 svg{
                     width: 24px;
                     height: 24px;
-                    color: #525152;
+                    color: #fff;
                 }
             }
         }
@@ -263,9 +264,11 @@
               display: flex;
               align-items: center;
               padding: 4px 0px;
+              border-bottom: 1px solid #F0F0F0;
+
             }
             .filter:nth-child(even) {
-              background: #F0F0F0;
+              // background: #F0F0F0;
             }
             .toggleBox{
                 margin-left: auto;

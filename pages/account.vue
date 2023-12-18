@@ -5,14 +5,15 @@
     <p>Thanks for making an account and joining the Topikz family</p>
     <div v-if="emailExists === false" class="subBtn" @click="handleCheckoutButtonClick">
       <stripe-buy-button
-        buy-button-id="buy_btn_1OGoxGI7NwPvbVzKnITvo8IT"
+        class="inactive"
+        buy-button-id="buy_btn_1ONehlI7NwPvbVzKcAQVmwhG"
         publishable-key="pk_live_51LPW9AI7NwPvbVzKAEYNw9T1ArvdfcxBjXl2d43sYpw0VAkCq1eaQtNwZDD9mJw2q2m87uopxuY7EJeQuzyam3s800Uv9XuURw"
       >
       </stripe-buy-button>
     </div>
-    <h4 v-if="!linking || emailExists === false">Go Unlimited and get:</h4>
+    <h4 v-if="!linking || emailExists === false">Get a free 7 day trial now!</h4>
     <ul v-if="!linking || emailExists === false">
-      <li>No more ADs, Just conversation</li>
+      <li>No more ADS, Just conversation</li>
       <li>28+ Topik types with many more to come</li>
       <li>Filter by the Types you want to play</li>
       <li>Keep a Leaderboard for you and your friends</li>
@@ -291,11 +292,14 @@ export default {
           payment_method_types: ['card'], // Adjust to your preferred payment methods
           line_items: [
             {
-              price: 'price_1OGou8I7NwPvbVzKU6Kei1Sz', // Replace with your actual price ID
+              price: 'price_1ONe0cI7NwPvbVzKERxeaeEO', // Replace with your actual price ID
               quantity: 1,
             },
           ],
           mode: 'subscription',
+          subscription_data:{
+            trial_period_days: 7
+          },
           success_url: window.location.origin + '/account?purchaseComplete=true?email=' + localStorage.getItem('localUser') + '?id=' + localStorage.getItem('stripeId'),
           cancel_url: window.location.origin + '/account',
         });
@@ -359,6 +363,7 @@ export default {
       text-align: center;
       margin-top: 24px;
       color: #fff;
+      text-transform: uppercase;
     }
     ul{
       padding: 0px;

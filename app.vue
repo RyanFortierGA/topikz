@@ -36,11 +36,22 @@
     }
 
   }
+  const checkScreenSize = () => {
+    if (process.client) {
+      if (window.innerWidth > 768) {
+        alert('It appears you are using a desktop device, please use a mobile device to get the best experience on this site. ');
+      }
+    }
+  }
 
   const curPath = computed(() => {
       return route.path
   })
-  checkPath()
+
+  checkScreenSize();
+  if (process.client) {
+    checkPath()
+  }
   watch(() => curPath, (newPath) => {
     if (newPath) {
       setTimeout(() => {

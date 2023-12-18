@@ -20,5 +20,7 @@
     padding: 18px;
     padding-top: 0px;
     color: #280000;
+    max-width:768px;
+    margin: auto;
   }
 </style>
