@@ -4,7 +4,7 @@
     <div class="formWrapper">
       <NuxtLink to="/member"><Icon name="ic:twotone-arrow-back" />Back to the fun</NuxtLink>
       <h1>Account Management</h1>
-      <span><a href="mailto:contact@topikz.com">contact@topikz.com</a></span>
+      <span><a href="mailto:contact.topikz@gmail.com">contact.topikz@gmail.com</a></span>
       <div class="buttons">
          <span @click="signOut">Sign Out</span>
         <span class="cancel" @click="cancelOpen = !cancelOpen">Cancel Subscription</span>
@@ -88,7 +88,7 @@ export default {
       } catch (error) {
         // Handle errors and notify the user
         alert('Error cancelling subscription. Please try again later.');
-          this.currentMessage = 'Cancelation failed, please logout and login to try again, if that still fails please reach out to contact@topikz.com for help'
+          this.currentMessage = 'Cancelation failed, please logout and login to try again, if that still fails please reach out to contact.topikz@gmail.com for help'
       }
     },
     async cancelCustomerSubscription() {
@@ -112,10 +112,10 @@ export default {
           user.delete().then(() => {
             this.cancelCustomerSubscription()
           }).catch((error) => {
-            this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact@topikz.com for help'
+            this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact.topikz@gmail.com for help'
           });
       } else {
-        this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact@topikz.com for help'
+        this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact.topikz@gmail.com for help'
       }
     } 
   },

@@ -71,7 +71,7 @@
                   I have an idea, how do i share it with the team?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>WOOOO! We love new ideas and are so excited to hear about it. Please email us at contact@topikz.com with the subject "New idea"</p>
+                    <p>WOOOO! We love new ideas and are so excited to hear about it. Please email us at contact.topikz@gmail.com with the subject "New idea"</p>
                 </div>
             </div>
             <div class="accordion-item">
@@ -79,7 +79,7 @@
                   I have found a bug... how do i tell you about it?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>uh oh... You are telling me this website is not absolutely perfect? We understand and are very grateful you want to share with us ways to improve. Please email us at contact@topikz.com with the subject along the lines of "bug: issue at hand"</p>
+                    <p>uh oh... You are telling me this website is not absolutely perfect? We understand and are very grateful you want to share with us ways to improve. Please email us at contact.topikz@gmail.com with the subject along the lines of "bug: issue at hand"</p>
                 </div>
             </div>
           
