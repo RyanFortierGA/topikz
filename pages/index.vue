@@ -349,7 +349,7 @@ export default {
         simplifyGroups:{
           label: 'Simplify It',
           description: "Take a word, and try and explain it in as few words as possible.",
-          details: 'This is meant to be played with 4+ players, but you can alter the rules to play it differently. Each team has to have one advocate and the rest will be guessers. The advocates need to go back and forth claiming how few words they can describe the secret word with. Once you dont believe the other advocate, call them out and make them do it.',
+          details: 'Each team has to have one advocate and the rest will be guessers. The advocates need to go back and forth claiming how few words they can describe the secret word with. Once you dont believe the other advocate, call them out and make them do it.',
           icon: 'fluent:data-funnel-20-filled',
           hex: '#3e2e33'
         },

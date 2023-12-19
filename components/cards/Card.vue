@@ -160,6 +160,8 @@ export default {
         height: 330px;
         z-index: 1;
         color: #fff;
+        display: flex;
+        flex-direction: column;
         h4{
             position: relative;
             font-size: 16px;
@@ -193,10 +195,10 @@ export default {
             color: #E36414;
             width: fit-content;
             margin: auto;
-            display: block;
+            display: flex;
             font-family: Nunito-bold;
             font-size: 18px;
-            left: 36%;
+            align-self: center;
         }
     }
 }

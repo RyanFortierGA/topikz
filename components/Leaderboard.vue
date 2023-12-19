@@ -62,11 +62,10 @@
           this.users = JSON.parse(localStorage.getItem('userScores'))
         } else {
           this.users = [
-            { "id": 1, "name": "James", "score": 87 },
-            { "id": 2, "name": "Emma", "score": 43 },
-            { "id": 3, "name": "Dylan", "score": 62 },
-            { "id": 4, "name": "Carter", "score": 13 },
-            { "id": 5, "name": "Olivia", "score": 102 }
+            { "id": 1, "name": "James", "score": 8 },
+            { "id": 2, "name": "Emma", "score": 6 },
+            { "id": 3, "name": "Dylan", "score": 0 },
+            { "id": 5, "name": "Olivia", "score": 11 }
           ]
         }
       },
