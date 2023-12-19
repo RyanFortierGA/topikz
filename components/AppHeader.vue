@@ -42,6 +42,7 @@ export default {
     
     methods: {
         handleRouteChange() {
+            this.infoOpen = false
             if(localStorage.localUser && localStorage.active !== 'false'){
                 this.loginRoute = '/accountManagement'
                 this.homeRoute = '/member'

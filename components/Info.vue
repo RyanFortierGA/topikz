@@ -82,6 +82,14 @@
                     <p>uh oh... You are telling me this website is not absolutely perfect? We understand and are very grateful you want to share with us ways to improve. Please email us at contact.topikz@gmail.com with the subject along the lines of "bug: issue at hand"</p>
                 </div>
             </div>
+            <div class="accordion-item">
+                <button class="accordion-header">
+                  I am trying to login to a new account on a previously used device but having some issues, what can i do?<span class="icon">+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Please click the following button and try logging in again to sync your new account to this device: <NuxtLink :to="'/reset'">Reset</NuxtLink>. If this does not work Please email us at contact.topikz@gmail.com with the subject along the lines of "reset: issue at hand"</p>
+                </div>
+            </div>
           
           </div>
       </div>
@@ -161,8 +169,7 @@
       opacity: 0;
       pointer-events: none;
       transition: 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
-      z-index: 10000;
-      overflow: scroll;
+      z-index: 10000000000;
   
       .modalContent {
         background: #222;
@@ -172,7 +179,6 @@
         height: 100%;
         position: relative;
         /* border-radius: 16px; */
-        overflow: scroll;
         h3{
           font-size: 28px;
           text-align: center;
@@ -199,6 +205,7 @@
       opacity: 1;
       pointer-events: all;
       .modalContent{
+        overflow: scroll;
         .close{
           pointer-events: all;
         }

@@ -6,7 +6,7 @@
       <h1>Account Management</h1>
       <span><a href="mailto:contact.topikz@gmail.com">contact.topikz@gmail.com</a></span>
       <div class="buttons">
-         <span @click="signOut">Sign Out</span>
+        <span class="signout" @click="signOut">Sign Out</span>
         <span class="cancel" @click="cancelOpen = !cancelOpen">Cancel Subscription</span>
         <span class="delete" @click="modalOpen = !modalOpen">Delete Account</span>
       </div>
@@ -33,6 +33,8 @@ export default {
       user: useUser(),
       currentMessage: ''
     };
+  },
+  mounted() {
   },
   methods: {
     async signOut(){
@@ -85,10 +87,13 @@ export default {
 
         // Handle success and notify the user
         this.currentMessage = 'Your subscription will cancel at the end of your paying period, we also hope to see you back soon!'
+        this.$nuxt.$toast.add({ severity: 'success', summary: 'Error Message', detail: 'Your subscription will cancel at the end of your paying period, we also hope to see you back soon!', life: 3000 })
+
       } catch (error) {
         // Handle errors and notify the user
-        alert('Error cancelling subscription. Please try again later.');
-          this.currentMessage = 'Cancelation failed, please logout and login to try again, if that still fails please reach out to contact.topikz@gmail.com for help'
+        // alert('Error cancelling subscription. Please try again later.');
+        this.currentMessage = 'Cancelation failed, please logout and login to try again, if that still fails please reach out to contact.topikz@gmail.com for help'
+        this.$nuxt.$toast.add({ severity: 'error', summary: 'Error Message', detail: 'Cancellation failed, please logout and login to try again, if that still fails please reach out to contact.topikz@gmail.com for help', life: 3000 })
       }
     },
     async cancelCustomerSubscription() {
@@ -103,6 +108,7 @@ export default {
       } catch (error) {
         // Handle errors
         console.error('Error cancelling subscription:', error);
+        this.$nuxt.$toast.add({ severity: 'error', summary: 'Error Message', detail: 'Cancellation failed, please logout and login to try again, if that still fails please reach out to contact.topikz@gmail.com for help', life: 3000 })
       }
       this.signOut()
     },
@@ -111,10 +117,13 @@ export default {
         const user = this.$nuxt.$firebaseAuth.currentUser;
           user.delete().then(() => {
             this.cancelCustomerSubscription()
+            this.$nuxt.$toast.add({ severity: 'success', summary: 'Error Message', detail: 'Deletion successful', life: 3000 })
           }).catch((error) => {
+            this.$nuxt.$toast.add({ severity: 'error', summary: 'Error Message', detail: 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact.topikz@gmail.com for help', life: 3000 })
             this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact.topikz@gmail.com for help'
           });
       } else {
+        this.$nuxt.$toast.add({ severity: 'error', summary: 'Error Message', detail: 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact.topikz@gmail.com for help', life: 3000 })
         this.currentMessage = 'Deletion failed, please logout and login to try again, if that still fails please reach out to contact.topikz@gmail.com for help'
       }
     } 
@@ -146,11 +155,15 @@ export default {
     flex-direction: column;
     gap: 16px;
     margin-top: 24px;
-    .cancel{
+    .signout{
         background: #2b1b1e;
         padding: 12px;
         border-radius: 24px;
         color: #fff;
+    }
+    .cancel{
+      font-size: 14px;
+      color: #6A0DAD;
     }
     .delete{
       font-size: 14px;

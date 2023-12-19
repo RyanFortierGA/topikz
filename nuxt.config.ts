@@ -43,6 +43,7 @@ export default defineNuxtConfig({
       },
       stripeKey: process.env.stripeKey,
       stripeKeySecret: process.env.stripeKeySecret,
+      gtagId: 'G-625F0G2TXV',
     },
   },
   styleResources: {
@@ -71,5 +72,5 @@ export default defineNuxtConfig({
   'google-adsense': {
     id: 'pub-9081500660838093',
     test: true
-  }
+  },
 })
