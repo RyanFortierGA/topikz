@@ -181,7 +181,7 @@ export default {
         },
         politicalConvo:{
           label: 'Political Conversation',
-          description: "In the most civil way possible, use this prompt to discuss a range of political topics.",
+          description: "In the most civil way possible, use this prompt to discuss political topics.",
           details: "In the most civil way possible, use this prompt to discuss a range of political topics. You can always opt out of answering it, but we encourage everyone to be understanding of different POV's.",
           icon: 'map:political',
           hex: '#2ab865'
