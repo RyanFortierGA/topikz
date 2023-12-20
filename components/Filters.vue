@@ -87,14 +87,9 @@
     },
     mounted() {
       window.addEventListener('keyup', this.handleEsc)
-      if(localStorage.localUser && localStorage.active !== 'false' && localStorage.getItem('savedFilters')){
-        console.log('ss')
-        this.currentFilters = JSON.parse(localStorage.getItem('savedFilters'))
-      } else {
-        this.chosenFilters.forEach(fil => {
-          this.currentFilters.push(fil)
-        });
-      }
+      this.chosenFilters.forEach(fil => {
+        this.currentFilters.push(fil)
+      });
     },
     beforeDestroy() {
       window.removeEventListener('keyup', this.handleEsc)

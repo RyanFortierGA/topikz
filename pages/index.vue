@@ -187,7 +187,7 @@ export default {
         },
         dateConvo:{
           label: 'Date Night',
-          description: "A night out or in with your favorite person calls for some good conversation, let us help!",
+          description: "A night out or in with your favorite person calls for some good conversation!",
           details: "A night out or in with your favorite person calls for some good conversation. You can talk about anything, but why not point those questions towards a bit more of a romantic side for a bit.",
           icon: 'ic:round-favorite',
           hex: '#c61470'
