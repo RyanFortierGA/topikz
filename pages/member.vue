@@ -367,14 +367,19 @@ export default {
 
   mounted(){
     if(this.cards){
-
       if(localStorage.getItem('freeCount') >= 10){
         localStorage.setItem('freeCount', 9)
+      }
+      if(localStorage.localUser && localStorage.active !== 'false' && localStorage.getItem('savedFilters')){
+        this.currentFilters = JSON.parse(localStorage.getItem('savedFilters'))
       }
       this.getTopic()
     }
     setTimeout(() => {
       if(this.currentCard.type = 'loading'){
+        if(localStorage.localUser && localStorage.active !== 'false' && localStorage.getItem('savedFilters')){
+          this.currentFilters = JSON.parse(localStorage.getItem('savedFilters'))
+        }
         this.getTopic()
       }
     }, 500);
