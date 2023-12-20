@@ -14,7 +14,7 @@
         <h4>Go Pro for Less than a dollar/month!</h4>
         <ul>
           <li>No ADs, Just conversation</li>
-          <li>28+ Topik types & Growing prompts library</li>
+          <li>27+ Topik types & Growing prompts library</li>
           <li>Filter by the Types you want to play</li>
           <li>Keep a scorecard for you and your friends</li>
         </ul>

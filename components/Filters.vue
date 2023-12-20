@@ -87,9 +87,13 @@
     },
     mounted() {
       window.addEventListener('keyup', this.handleEsc)
-      this.chosenFilters.forEach(fil => {
-        this.currentFilters.push(fil)
-      });
+      if(localStorage.localUser && localStorage.active !== 'false' && localStorage.getItem('savedFilters')){
+        this.currentFilters = JSON.parse(localStorage.getItem('savedFilters'))
+      } else {
+        this.chosenFilters.forEach(fil => {
+          this.currentFilters.push(fil)
+        });
+      }
     },
     beforeDestroy() {
       window.removeEventListener('keyup', this.handleEsc)
@@ -109,6 +113,7 @@
       },
       handleSave(){
         this.$emit('updateFilters', this.currentFilters)
+        localStorage.setItem("savedFilters", JSON.stringify(this.currentFilters))
         this.$emit('onClose')
       },
       closeModal(e) {

@@ -367,9 +367,7 @@ export default {
 
   mounted(){
     if(this.cards){
-      if(localStorage.getItem('localFilters')){
-        this.chosenFilters = localStorage.getItem('localFilters').split(",");
-      }
+
       if(localStorage.getItem('freeCount') >= 10){
         localStorage.setItem('freeCount', 9)
       }
@@ -419,7 +417,6 @@ export default {
     updateFilters(filters){
       this.chosenFilters = filters
       this.getTopic()
-      localStorage.setItem("localFilters", filters)
     },
     adReset(){
       localStorage.setItem('freeCount', 0)

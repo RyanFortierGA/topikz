@@ -14,7 +14,7 @@
     <h4 v-if="!linking || emailExists === false">Get a free 7 day trial now!</h4>
     <ul v-if="!linking || emailExists === false">
       <li>No more ADS, Just conversation</li>
-      <li>28+ Topik types with many more to come</li>
+      <li>27+ Topik types with many more to come</li>
       <li>Filter by the Types you want to play</li>
       <li>Keep a Leaderboard for you and your friends</li>
       <li>A growing library of prompts and games</li>
