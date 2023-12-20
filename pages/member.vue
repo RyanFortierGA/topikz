@@ -417,6 +417,7 @@ export default {
     updateFilters(filters){
       this.chosenFilters = filters
       this.getTopic()
+      localStorage.setItem("savedFilters", JSON.stringify(filters))
     },
     adReset(){
       localStorage.setItem('freeCount', 0)
