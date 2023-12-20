@@ -101,7 +101,7 @@ export default {
             margin-top: 0px;
             text-align: center;
             font-size: 20px;
-            margin-bottom: 16px;
+            margin-bottom: 32px;
             letter-spacing: 0.1px;
             line-height: 1.3;
             height: 74px;

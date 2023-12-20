@@ -268,4 +268,9 @@ export default {
         border: 1px solid #85a45a;
     }
 }
+.cardBlank{
+        opacity: 0;
+        height: 400px;
+        position: relative;
+    }
 </style>

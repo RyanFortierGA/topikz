@@ -292,21 +292,21 @@ export default {
         },
         castComp:{
           label: 'Casted',
-          description: "Become the casting director for a day, can you remember what project these actors worked on togehter?",
+          description: "Become the casting director for a day, try and guess the movie.",
           details: "You are given the names of people who are all casted in the same movie or tv show, can you guess which one it is?",
           icon: 'icon-park-solid:peoples-two',
           hex: '#283b6c' 
         },
         songComp:{
           label: 'Name the Song',
-          description: "Okay you are singing along, but can you name the song and artist of the song you are singing?",
+          description: "Okay you are singing along, but can you name the song and artist?",
           details: "We all love music, we all love singing along...but can you remember what exact song you were singing along to?",
           icon: 'iconamoon:music-album-fill',
           hex: '#761498' 
         },
         revealComp:{
           label: 'Reveal',
-          description: "You are on a goal to figure out whats being slowly revealed as quickly as possible, use the clues to get you there.",
+          description: "Try to figure out whats being revealed as quickly as you can.",
           details: "Use the clues to help decipher what you are trying to guess, it could be a movie, event, person...etc. Do your best to get it with as few clues as possible.",
           icon: 'mdi:eye-check',
           hex: '#59369f' 
