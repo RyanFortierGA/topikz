@@ -71,6 +71,6 @@ export default defineNuxtConfig({
   modules: ['nuxt-icon', '@tresjs/nuxt', '@nuxtjs/sanity','@nuxtjs/google-adsense'],
   'google-adsense': {
     id: 'pub-9081500660838093',
-    test: true
+    test: false
   },
 })
