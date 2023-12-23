@@ -2,7 +2,7 @@
   <div :class="['home', filterOpen?'disableCards' :'']">
     <h1>Lets Talk...</h1>
     <transition name="flip">
-      <DefaultCard class="cardWrap" v-if="currentCard.type === 'casualConvo'" :info="currentCard" :reset="reset"/>
+      <DefaultCard class="cardWrap" v-if="currentCard.type === 'casualConvo'" :info="currentCard" :reset="reset" @getTopic="getTopic"/>
     </transition>
     <transition name="flap">
       <DefaultCard class="cardWrap" v-if="currentCard.type === 'familyConvo'" :info="currentCard" :reset="reset"/>
@@ -158,7 +158,6 @@ export default {
       'ovoComp', 'fivesecComp', 'ftlComp', 'triviaComp' ,'foundedComp', 'celebComp', 'mlComp', 'castComp', 'songComp', 'revealComp',
       'dykGame', 'syncedGame', 'whoGame', 'draftGame',
       'likelyGroups', 'simplifyGroups', 'splitGroups',],
-      currentCard: {type: 'loading'},
       reset: false,
       loaded: false,
       filterOpen: false,
@@ -361,7 +360,17 @@ export default {
           icon: 'material-symbols:call-split',
           hex: '#85a45a'
         },
-      }
+      },
+      currentCard: {
+        type:'casualConvo',
+        label:'Welcome',
+        heading: 'Welcome to Topikz!',
+        description: 'We are a stress-free, low-pressure conversation and game starter, offering over 27 topik types, well over a thousand prompts, and even more fun to be explored.',
+        details: "Topikz is whatever you want it to be! Whether that's a small game of trivia, a conversation on traveling the world, or a dangerous round of truth or dare, or a an intense draft war on the best cereals ever created. Come on in and stay awhile.",
+        icon: 'mdi:hand-wave-outline',
+        hex: '#8CBF26',
+        welcome: true,
+      },
     }
   },
 
@@ -373,14 +382,7 @@ export default {
       if(localStorage.getItem('freeCount') >= 10){
         localStorage.setItem('freeCount', 9)
       }
-
-      this.getTopic()
     }
-    setTimeout(() => {
-      if(this.currentCard.type = 'loading'){
-        this.getTopic()
-      }
-    }, 500);
   },
   methods:{
     getRandomInt(max) {

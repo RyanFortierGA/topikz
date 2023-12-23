@@ -9,7 +9,7 @@ export default defineNuxtConfig({
         {
           hid: 'description',
           name: 'description',
-          content: 'A stress free, low pressure conversation and game starter. With over 28 topik types, hundreds of prompts, and even more fun to be explored.'
+          content: 'A stress-free, low-pressure conversation and game starter, offering over 27 topik types, well over a thousand prompts, and even more fun to be explored.'
         },
         { hid: 'og:image', property: 'og:image', content: '~/assets/images/topikz_logo.png' }
       ],

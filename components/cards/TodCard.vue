@@ -169,7 +169,7 @@ export default {
         }
     }
     .showDetails{
-        height: 130px;
+        height: 122px;
     }
     .description{
         position: absolute;

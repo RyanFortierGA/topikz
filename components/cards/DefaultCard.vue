@@ -1,5 +1,5 @@
 <template>
-    <div class="draftCard card" >
+    <div :class="['draftCard card', info.welcome? 'welcomeCard': '']" >
         <div :class="[learnOpen? 'cardWrap showDetails' : 'cardWrap', info.type]">
             <span v-if="info.icon" class="topic"><Icon :name="info.icon" />{{info.label}}</span>
             <h2>{{info.heading}}</h2>
@@ -14,13 +14,15 @@
                 <h4 class="subHeader">Well... get to talking!</h4> 
 
             </div>
-            <span class="selector" @click="gaOpen = !gaOpen" v-if="!gaOpen">START</span>
+            <span class="selector" @click="gaOpen = !gaOpen" v-if="!gaOpen && !info.welcome">START</span>
+            <span class="selector" @click="getTopic" v-if="info.welcome">Start The Conversation</span>
         </div>
         <div class="description">
             <h4 v-if="learnOpen">The Details:</h4>
             <p v-if="learnOpen">{{info.details}}</p>
             <span v-if="!learnOpen" @click="learnOpen = !learnOpen">Learn More <Icon name="mingcute:finger-press-fill" /></span>
-            <span class="selector" v-else @click="startFinal">{{gaOpen? 'CONTINUE' : 'START'}}</span>
+            <span class="selector" v-if="learnOpen && !info.welcome" @click="startFinal">{{gaOpen? 'CONTINUE' : 'START'}}</span>
+            <span class="selector" v-if="learnOpen && info.welcome" @click="getTopic">Start The Conversation</span>
         </div>
     </div>
 </template>
@@ -47,6 +49,9 @@ export default {
             setTimeout(() => {
                 this.learnOpen = false
             }, 300);
+        },
+        getTopic(){
+            this.$emit('getTopic')
         }
     },
 
@@ -149,7 +154,7 @@ export default {
         }
     }
     .showDetails{
-        height: 130px;
+        height: 122px;
     }
     .description{
         position: absolute;
@@ -267,6 +272,21 @@ export default {
         color: #85a45a;
         border: 1px solid #85a45a;
     }
+}
+.welcomeCard{
+    .cardWrap{
+        .topic{
+            border: 1px solid #E36414;
+            color: #E36414;
+        }
+        h2{
+            height: auto;
+        }
+        h4{
+            display: none;
+        }
+    }
+
 }
 .cardBlank{
         opacity: 0;
