@@ -14,8 +14,8 @@
                   What is Topikz? <span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Topikz is whatever you want it to be! The goal behind Topikz was to create a stress free, low pressure conversation starter. Whether thats a small game of trivia, a conversation on traveling the world, or a dangerous round of truth or dare.
-                      We know we aren't the only place to go for a list of conversation topics on the internet, but we do believe we are the best at giving you such a large variety of talking points, easy games and fun conversation.
+                    <p>Topikz is whatever you want it to be! The goal behind Topikz was to create a stress-free, low-pressure conversation starter. Whether that's a small game of trivia, a conversation on traveling the world, or a dangerous round of truth or dare, we aim to provide a wide variety of talking points, easy games, and fun conversations.
+                    We know we aren't the only place to go for a list of conversation topics on the internet, but we do believe we are the best at offering such a large variety of talking points, easy games, and enjoyable conversations.
                     </p>
                 </div>
             </div>
@@ -24,8 +24,7 @@
                   How do you play?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>The short answer is, however you want to play! If you just want to use Topikz to start your nights first conversation, then its great for just that. Or if you like creating a variety in your conversation thoughout a lunch, there is nothing better. maybe
-                      you are like us and you like to also add a little game to your dinner date, we have so many fun unique games for you to keep it friendly but a bit competetive. PS. Don't forget to keep score with the leaderboard!
+                    <p>The short answer is: however you want to play! If you just want to use Topikz to start your night's first conversation, then it's great for just that. Or if you like creating variety in your conversation throughout lunch, there is nothing better. Maybe you are like us and enjoy adding a little game to your dinner date; we have many fun, unique games for you to keep it friendly but a bit competitive. P.S. Don't forget to keep score with the leaderboard!
                     </p>
                 </div>
             </div>
@@ -34,8 +33,8 @@
                   Can I only play certain topikz?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Absolutely! This is something we offer with our Pro subscription. You get a list of all the Topikz types and you are able to choose any/all the ones you want to play. If you only want to play "Hot takes" you can do that, maybe you only want Conversational topikz and no games, you have that power! 
-                      With the free version you can go now and look at a list of all the types to give you an idea of just how many ways you will have to play topikz with PRO!</p>
+                    <p>Absolutely! This is something we offer with our Pro subscription. You receive a list of all the Topikz types, and you can choose any or all the ones you want to play. If you only want to play "Hot Takes," you can do that. Perhaps you only want Conversational Topikz and no games—you have that power!
+                      With the free version, you can explore a list of all the types now to give you an idea of just how many ways you will have to play Topikz with PRO!</p>
                 </div>
             </div>
             <div class="accordion-item">
@@ -43,8 +42,7 @@
                   How do i gamify Topikz?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Gamify it how you deem best fits your social circle. Maybe you all have a way to give points for conversation, i don't know how but maybe you do. Or maybe you are playing games like truth or dare and you create a wager system for points. There is also some pretty straight forward games like "Reveal", where the first person
-                      to guess the answer should probably be rewarded with a point... And hey, don't forget we give you a nice little leaderboard to keep track of all these points with PRO.
+                    <p>Gamify it in the way that best fits your social circle. Perhaps you all have a method for awarding points during conversations—I don't know how, but maybe you do. Alternatively, if you're playing games like truth or dare, you can create a wager system for points. There are also straightforward games like "Reveal," where the first person to guess the answer should probably be rewarded with a point. And hey, don't forget, with PRO, we provide you with a nice little leaderboard to keep track of all these points.
                     </p>
                 </div>
             </div>
@@ -53,8 +51,7 @@
                   Is there more to come?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>There is so much more to come! We have plans for many more games, lots more features to add to make games more fun, and tons of prompts! We are frequently adding in more prompts to create an ever growing library. So even if you have somehow got through all of say the "Would you rather's" one day, good chance that the next day there is a whole
-                      new list of them to play.
+                    <p>There is so much more to come! We have plans for many more games, lots of additional features to enhance the fun of the games, and an abundance of prompts! We are continually adding more prompts to create a continually growing library. So, even if you have somehow gotten through all of, let's say, the "Would you rather" questions one day, there's a good chance that the next day, there is a whole new list of them to play.
                     </p>
                 </div>
             </div>
@@ -63,7 +60,7 @@
                   What inspired Topikz?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>This is more of a question of who! Me and wife have over the years come to really like fun little games or conversation over dinner/lunch or just when we are hanging out. This is exactly what sparked the idea of Topikz! We thought, well we have made up a bunch of games, and theres a ton of great ones already out there... Why not put them all in one place?</p>
+                    <p>This is more of a question of who! My wife and I have, over the years, developed a strong fondness for fun little games or conversations during meals or simply when we are hanging out. This is precisely what sparked the idea for Topikz! We thought, well, we have created numerous games, and there are already plenty of great ones out there... Why not gather them all in one place?</p>
                 </div>
             </div>
             <div class="accordion-item">
@@ -71,7 +68,7 @@
                   I have an idea, how do i share it with the team?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>WOOOO! We love new ideas and are so excited to hear about it. Please email us at contact.topikz@gmail.com with the subject "New idea"</p>
+                    <p>WOOOO! We love new ideas and are thrilled to hear about them. Please email us at contact.topikz@gmail.com with the subject line "New Idea.</p>
                 </div>
             </div>
             <div class="accordion-item">
@@ -79,7 +76,7 @@
                   I have found a bug... how do i tell you about it?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>uh oh... You are telling me this website is not absolutely perfect? We understand and are very grateful you want to share with us ways to improve. Please email us at contact.topikz@gmail.com with the subject along the lines of "bug: issue at hand"</p>
+                    <p>Uh oh... Are you telling me this website is not absolutely perfect? We understand and are very grateful that you want to share ways to improve. Please email us at contact.topikz@gmail.com with a subject line along the lines of "Bug: [Issue at Hand].</p>
                 </div>
             </div>
             <div class="accordion-item">
@@ -87,7 +84,7 @@
                   I am trying to login to a new account on a previously used device but having some issues, what can i do?<span class="icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Please click the following button and try logging in again to sync your new account to this device: <NuxtLink :to="'/reset'">Reset</NuxtLink>. If this does not work Please email us at contact.topikz@gmail.com with the subject along the lines of "reset: issue at hand"</p>
+                    <p>Please click the following button and attempt to log in again to sync your new account to this device: <NuxtLink :to="'/reset'">Reset</NuxtLink>. If this does not work, please email us at contact.topikz@gmail.com with a subject line along the lines of "Reset: [Issue at Hand]."</p>
                 </div>
             </div>
           
