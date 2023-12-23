@@ -250,7 +250,7 @@ export default {
         },
         ovoComp:{
           label: 'One Vs. One',
-          description: "Use the prompt to go back and forth quickly naming items that match the category.",
+          description: "Go back and forth quickly naming items that match the category.",
           details:  "This can get heated, use the prompt to go back and forth quickly naming items that match the category. If one person has to think for a few seconds and doesn't name something, they conceed the round!",
           icon: 'icon-park-outline:switch',
           hex: '#d750ac'
