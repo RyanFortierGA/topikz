@@ -19,7 +19,7 @@
           <li>Keep a scorecard for you and your friends</li>
         </ul>
         <div class="buttons">
-          <NuxtLink :to="'/signup'">Try pro today</NuxtLink>
+          <NuxtLink :to="'/signup'">Try PRO today</NuxtLink>
           <span @click="handleClose" :class="canContinue? 'active countdown' : 'countdown'">Continue Chatting <p v-if="!canContinue">({{countdown}})</p></span>
         </div>
       </div>
