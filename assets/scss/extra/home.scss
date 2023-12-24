@@ -87,6 +87,10 @@
       .flap-leave-to {
         /* transform: translateX(100px); */
       }
+      .disabledControls{
+        opacity: .5;
+        pointer-events: none;
+      }
   }
 .disableCards{
   .cardWrap{

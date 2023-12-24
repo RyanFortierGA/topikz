@@ -115,7 +115,7 @@ export default {
             font-size: 20px;
             margin-bottom: 32px;
             letter-spacing: 0.1px;
-            height: 74px;
+            height: fit-content;
             line-height: 1.3;
         }
         h4{

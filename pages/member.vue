@@ -85,7 +85,7 @@
     <transition name="flip">
       <WhoCard class="cardWrap" v-if="currentCard.type === 'whoGame'" :info="currentCard" :reset="reset"/>
     </transition>
-    <Controls v-if="currentCard.type" @rollNew="getTopic()" @openFilters="toggleFilters" @openScore="scoreOpen = !scoreOpen"/>
+    <Controls :class="currentCard.label === 'Welcome' ? 'disabledControls' : ''" v-if="currentCard.type" @rollNew="getTopic()" @openFilters="toggleFilters" @openScore="scoreOpen = !scoreOpen"/>
     <svg class="loader" v-else version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
         <rect x="20" y="50" width="4" height="10" fill="#fff">
@@ -366,7 +366,7 @@ export default {
         label:'Welcome',
         heading: 'Welcome to Topikz!',
         description: 'We are a stress-free, low-pressure conversation and game starter, offering over 27 topik types, well over a thousand prompts, and even more fun to be explored.',
-        details: "Topikz is whatever you want it to be! Whether that's a small game of trivia, a conversation on traveling the world, or a dangerous round of truth or dare, or a an intense draft war on the best cereals ever created. Come on in and stay awhile.",
+        details: "Topikz is whatever you want it to be! Whether that's a conversation on traveling the world, a dangerous round of truth or dare, or a an intense draft war on the best cereals ever created. Come on in and stay awhile.",
         icon: 'mdi:hand-wave-outline',
         hex: '#8CBF26',
         welcome: true,
